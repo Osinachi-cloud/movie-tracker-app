@@ -13,6 +13,7 @@ import { NavLink } from "react-router-dom";
 
 import PorpularMovieCard from '../card/PorpularMovieCard';
 import SearchedMovieCard from "../card/SearchedMovieCard";
+import Navbar from "../navbar/Navbar";
 
 const MovieScreen = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -51,7 +52,7 @@ const MovieScreen = () => {
 
   return (
     <Container>
-      <NavLink to="favorites">Favorite Page</NavLink>
+      <Navbar/>
       <SearchInputWrapper>
         <SearchInput
           placeholder="Search Movies"

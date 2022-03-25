@@ -11,7 +11,6 @@ const Favorites = () => {
   const [{ basket }, dispatch] = useStateValue();
   return (
     <Container>
-      <NavLink to="/"> Back to home</NavLink>
       <h2>{basket.length}</h2>
 
       {basket.length > 0 ? (
