@@ -9,6 +9,7 @@ import {
   SearchInputWrapper,
   SearchIconWrapper,
 } from "./styles";
+import { NavLink } from "react-router-dom";
 
 import PorpularMovieCard from '../card/PorpularMovieCard';
 import SearchedMovieCard from "../card/SearchedMovieCard";
@@ -50,6 +51,7 @@ const MovieScreen = () => {
 
   return (
     <Container>
+      <NavLink to="favorites">Favorite Page</NavLink>
       <SearchInputWrapper>
         <SearchInput
           placeholder="Search Movies"

@@ -10,7 +10,15 @@ const reducer = (state, action)=> {
     console.log(state.basket)
     switch(action.type){
         case 'ADD_TO_BASKET':
+            console.log(state.basket)
+           
+            // if(action.item.id){
+            //     return state
+            // } 
+            // const newIndex = state.basket.findIndex((basketItem)=> basketItem.id === action.id);
+            // if(newIndex)
             return {
+              
                 ...state,
                 basket: [...state.basket, action.item],
             };

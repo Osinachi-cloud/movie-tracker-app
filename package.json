@@ -19,6 +19,7 @@
     "jsonp": "^0.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "react-tooltip": "^4.2.21",
     "styled-components": "^5.3.3",

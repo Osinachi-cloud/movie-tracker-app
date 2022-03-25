@@ -1,18 +1,33 @@
-import Home from "./components/Home";
+// import Home from "./components/Home";
 import './App.css'
-import Favorites from "./components/favorites/Favorites";
+import Favorites from "./components/movieList/Favorites";
+import { Routes, Route  } from 'react-router-dom'
+import MovieScreen from './components/movieList/MovieScreen';
 
-
-function App() {
+const App=()=> {
   return (
-    <div className="">
-      <Home/>
-      <Favorites/>
+
+    <>
+
+
+      <Routes>
+        <Route path="/" element={<MovieScreen/>}/>
+        <Route path="favorites" element={<Favorites/>}/>
+        
+        
+        
+      </Routes>
+
+
+      {/* <Home/>
+
+
+      <Favorites/> */}
     
       
       
 
-    </div>
+    </>
   );
 }
 

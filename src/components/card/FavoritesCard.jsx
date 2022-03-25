@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useStateValue } from '../../hooks/StateProvider';
 import { pink} from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ReactTooltip from "react-tooltip";
 import {  
@@ -15,15 +15,17 @@ import {
   
   } from "./styles";
 
-const FavoritesCard = ({id, name,backdrop_path }) => {
+const FavoritesCard = ({id,name, backdrop_path }) => {
+    const [isFavorite, setIsFavorite] = useState(false)
 
     const [{basket}, dispatch] = useStateValue();
-    const removeFromBasket =()=>(
+    const removeFromBasket =()=>{
         dispatch({
             type: 'REMOVE_FROM_BASKET',
             id: id,
         })
-    )
+        setIsFavorite(!isFavorite)
+    }
   return (
     <>
 
@@ -40,18 +42,18 @@ const FavoritesCard = ({id, name,backdrop_path }) => {
            <ActionWrapper>
              <IconWrapButton>
                <IconWrapper onClick={removeFromBasket}>
-                 <FavoriteIcon
+                 <FavoriteBorderIcon
                    data-tip
-                   data-for="mark as watched"
+                   data-for="removeFromfavorites"
                    color="success"
                  />
                </IconWrapper>
                <ReactTooltip
-                 id="mark as watched"
+                 id="removeFromfavorites"
                  place="bottom"
                  effect="solid"
-               >
-                 mark as watched
+               >   { isFavorite? 'add to favorites' : "remove from favorites" }
+                 
                </ReactTooltip>
              </IconWrapButton>
 
@@ -59,12 +61,12 @@ const FavoritesCard = ({id, name,backdrop_path }) => {
                <IconWrapper>
                  <CheckCircleIcon
                    data-tip
-                   data-for="favorites"
+                   data-for="markedWatch"
                    sx={{ color: pink[500] }}
                  />
                </IconWrapper>
-               <ReactTooltip id="favorites" place="bottom" effect="solid">
-                 add to favorites
+               <ReactTooltip id="markedWatch" place="bottom" effect="solid">
+                    mark as watched
                </ReactTooltip>
              </IconWrapButton>
            </ActionWrapper>
