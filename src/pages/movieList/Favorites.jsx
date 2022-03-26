@@ -1,21 +1,21 @@
 import React from "react";
 import { useStateValue } from "../../hooks/StateProvider";
 import {NavLink } from 'react-router-dom'
-import FavoritesCard from "../card/FavoritesCard";
+import FavoritesCard from "../../components/card/FavoritesCard";
 import {
   Container,
   MovieList,
 } from "./styles";
 
 const Favorites = () => {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ favorites }, dispatch] = useStateValue();
   return (
     <Container>
-      <h2>{basket.length}</h2>
+      <h2>{favorites.length}</h2>
 
-      {basket.length > 0 ? (
+      {favorites.length > 0 ? (
         <MovieList>
-          {basket.map((item) => (
+          {favorites.map((item) => (
             <FavoritesCard
               id={item.id}
               name={item.name}

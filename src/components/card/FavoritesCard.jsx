@@ -18,10 +18,10 @@ import {
 const FavoritesCard = ({id,name, backdrop_path }) => {
     const [isFavorite, setIsFavorite] = useState(false)
 
-    const [{basket}, dispatch] = useStateValue();
-    const removeFromBasket =()=>{
+    const [{favorites}, dispatch] = useStateValue();
+    const removeFromFavorites =()=>{
         dispatch({
-            type: 'REMOVE_FROM_BASKET',
+            type: 'REMOVE_FROM_FAVORITES',
             id: id,
         })
         setIsFavorite(!isFavorite)
@@ -29,7 +29,7 @@ const FavoritesCard = ({id,name, backdrop_path }) => {
   return (
     <>
 
-<MovieCard key={id}>
+<MovieCard>
            
            <Figure>
              <MovieImage
@@ -41,7 +41,7 @@ const FavoritesCard = ({id,name, backdrop_path }) => {
 
            <ActionWrapper>
              <IconWrapButton>
-               <IconWrapper onClick={removeFromBasket}>
+               <IconWrapper onClick={removeFromFavorites}>
                  <FavoriteBorderIcon
                    data-tip
                    data-for="removeFromfavorites"

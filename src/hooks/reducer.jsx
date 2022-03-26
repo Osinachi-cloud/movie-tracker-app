@@ -1,32 +1,31 @@
 export const initialState = {
-    basket:[],
+    favorites:[],
 };
 
-export const getBasketTotal =(basket)=>
-basket?.reduce((amount, item)=> item.price + amount, 0);
+
 
 const reducer = (state, action)=> {
     console.log(action);
-    console.log(state.basket)
+    console.log(state.favorites)
     switch(action.type){
-        case 'ADD_TO_BASKET':
-            console.log(state.basket)
-           
-            // if(action.item.id){
-            //     return state
-            // } 
-            // const newIndex = state.basket.findIndex((basketItem)=> basketItem.id === action.id);
-            // if(newIndex)
+        case 'ADD_TO_FAVORITES':
+            console.log(state.favorites)
+            console.log(action.item.id)
+            const newIndex = state.favorites.findIndex((favoritesItem)=> favoritesItem.id === action.item.id);
+            if(newIndex >=0){
+                console.log(...state.favorites)
+                return [state.favorites]
+            }
             return {
               
                 ...state,
-                basket: [...state.basket, action.item],
+                favorites: [...state.favorites, action.item],
             };
-            case "REMOVE_FROM_BASKET":
-           const index = state.basket.findIndex((basketItem)=> basketItem.id === action.id);
-           let newBasket = [...state.basket];
+            case "REMOVE_FROM_FAVORITES":
+           const index = state.favorites.findIndex((favoritesItem)=> favoritesItem.id === action.id);
+           let newfavorite = [...state.favorites];
            if (index >=0){
-               newBasket.splice(index,1)
+               newfavorite.splice(index,1)
             } else {
                 console.warn(
                     `cant remove product (id:${action.id}) as its not in basket!`
@@ -35,7 +34,7 @@ const reducer = (state, action)=> {
         
             return{
                 ...state,
-                basket: newBasket
+                favorites: newfavorite
             }
             default:
                 return state;

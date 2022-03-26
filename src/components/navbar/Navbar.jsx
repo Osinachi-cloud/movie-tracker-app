@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bars, Nav, NavLink, NavMenu, NavBtn, NavBtnLink } from './style';
+import { Bars, Nav, NavLink, NavMenu, NavBtn, NavBtnLink, Logo } from './style';
 
 
 const Navbar = () => {
@@ -7,32 +7,32 @@ const Navbar = () => {
     <>
       <Nav>
         <NavLink to='/'>
-          LOGO
+          <Logo>
+               LOGO
+          </Logo>
+          
         </NavLink>
         <Bars/>
         <NavMenu>
           <NavLink to='/favorites' activeStyle>
             Favorites
           </NavLink>
-          <NavLink to='/services' activeStyle>
-            Services
+          <NavLink to='/watchlist' activeStyle>
+            Watched Movies
           </NavLink>
-          <NavLink to='/contact-us' activeStyle>
-            Contact Us
-          </NavLink>
-          <NavLink to='/sign-up' activeStyle>
-            Sign Up
+          <NavLink to='/featured' activeStyle>
+            FeaturedMovie
           </NavLink>
           {/* Second Nav */}
           {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-        <NavBtn>
-          <NavBtnLink to='/signin'>Sign In</NavBtnLink>
-        </NavBtn>
-        <NavBtn>
-          <NavBtnLink to='/signin'>Sign Up</NavBtnLink>
-        </NavBtn>
+        <div style={{display: 'flex', justifyContent: 'right'}}>
+            <NavBtn>
+              <NavBtnLink to='/login'>Sign In</NavBtnLink>
+            </NavBtn>
+            <NavBtn>
+              <NavBtnLink to='/signup'>Sign Up</NavBtnLink>
+            </NavBtn>
 
         </div>
        

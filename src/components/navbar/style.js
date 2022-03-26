@@ -3,8 +3,10 @@ import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 export const Nav = styled.nav`
-  background: #000;
-  height: 80px;
+  background: #1B1A1E;
+  height:80px;
+  // background:red;
+  // height: fit-content;
   display: flex;
   justify-content: space-between;
   // padding: 0.5rem calc((100vw - 1000px) / 2);
@@ -15,6 +17,9 @@ export const Nav = styled.nav`
   position:fixed;
   top:0;
   left:0;
+  @media screen and (max-width: 768px) {
+
+  }
 
 `;
 
@@ -22,15 +27,23 @@ export const NavLink = styled(Link)`
   color: #fff;
   display: flex;
   align-items: center;
+  font-family: 'Lato';
+  color:rgb(150,150,150);
   text-decoration: none;
   padding: 0 1rem;
   height: 100%;
   cursor: pointer;
   &.active {
-    color: #15cdfc;
+    color: #397D32;
+
+
   }
 `;
-
+export const Logo = styled.h2`
+  font-weight:900;
+  font-size:25px;
+  color: #397D32;
+`
 export const Bars = styled(MenuIcon)`
   display: none;
   color: #fff;
@@ -62,6 +75,7 @@ export const NavMenu = styled.div`
   white-space: nowrap; */
   @media screen and (max-width: 768px) {
     display: none;
+
   }
 `;
 
@@ -74,13 +88,15 @@ export const NavBtn = styled.nav`
   width: 100vw; */
   @media screen and (max-width: 768px) {
     display: none;
+
   }
 `;
 
 export const NavBtnLink = styled(Link)`
   border-radius: 4px;
-  background: #256ce1;
-  padding: 10px 22px;
+  background: #397D32;
+  padding: 8px 15px;
+  font-family:'Lato';
   color: #fff;
   outline: none;
   border: none;
@@ -92,6 +108,6 @@ export const NavBtnLink = styled(Link)`
   &:hover {
     transition: all 0.2s ease-in-out;
     background: #fff;
-    color: #010606;
+    color: #397D32;
   }
 `;

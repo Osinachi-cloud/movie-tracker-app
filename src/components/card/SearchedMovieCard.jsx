@@ -16,13 +16,13 @@ import ReactTooltip from "react-tooltip";
 import { useStateValue } from '../../hooks/StateProvider';
 
 const SearchedMovieCard = ({id, original_title,backdrop_path }) => {
-  const[{basket}, dispatch]= useStateValue();
+  const[{favorites}, dispatch]= useStateValue();
 
 
 
-  const addToBasket =()=>{
+  const addToFavorites =()=>{
     dispatch({
-        type:'ADD_TO_BASKET',
+        type:'ADD_TO_FAVORITES',
         item:{
             id:id,
             original_title:original_title,
@@ -36,7 +36,7 @@ const SearchedMovieCard = ({id, original_title,backdrop_path }) => {
 
   return (
     <>
-         <MovieCard key={id}>
+         <MovieCard >
            
               <Figure>
                 <MovieImage
@@ -48,7 +48,7 @@ const SearchedMovieCard = ({id, original_title,backdrop_path }) => {
 
               <ActionWrapper>
                 <IconWrapButton>
-                  <IconWrapper onClick={addToBasket}>
+                  <IconWrapper onClick={addToFavorites}>
                     <FavoriteIcon
                       data-tip
                       data-for="mark as watched"

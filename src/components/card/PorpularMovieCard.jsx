@@ -20,20 +20,20 @@ import ReactTooltip from "react-tooltip";
 import { useStateValue } from '../../hooks/StateProvider';
 
 const PorpularMovieCard = ({id, name,backdrop_path }) => {
-  const[{basket}, dispatch]= useStateValue();
+  const[{favorites}, dispatch]= useStateValue();
   const [isFavorite, setIsFavorite] = useState(false)
 
-  const removeFromBasket =()=>{ 
+  const removeFromFavorites =()=>{ 
     dispatch({
-        type: 'REMOVE_FROM_BASKET',
+        type: 'REMOVE_FROM_FAVORITES',
         id: id,
     })
-    setIsFavorite(!isFavorite)
+    setIsFavorite(false)
   }
 
-  const addToBasket =()=>{
+  const addToFavorites =()=>{
     dispatch({
-        type:'ADD_TO_BASKET',
+        type:'ADD_TO_FAVORITES',
         item:{
             id:id,
             name:name,
@@ -41,14 +41,14 @@ const PorpularMovieCard = ({id, name,backdrop_path }) => {
 
         },
     });    
-    setIsFavorite(!isFavorite);
+    setIsFavorite(true);
 };
 
 
 
   return (
     <>
-         <MovieCard key={id}>
+         <MovieCard>
            
               <Figure>
                 <MovieImage
@@ -60,7 +60,7 @@ const PorpularMovieCard = ({id, name,backdrop_path }) => {
 
               <ActionWrapper>
                 <IconWrapButton>
-                  <IconWrapper onClick={ !isFavorite? addToBasket : removeFromBasket}>
+                  <IconWrapper onClick={ !isFavorite? addToFavorites : removeFromFavorites}>
                     {
                       isFavorite?  (
                         <FavoriteIcon

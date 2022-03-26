@@ -11,9 +11,9 @@ import {
 } from "./styles";
 import { NavLink } from "react-router-dom";
 
-import PorpularMovieCard from '../card/PorpularMovieCard';
-import SearchedMovieCard from "../card/SearchedMovieCard";
-import Navbar from "../navbar/Navbar";
+import PorpularMovieCard from '../../components/card/PorpularMovieCard';
+import SearchedMovieCard from "../../components/card/SearchedMovieCard";
+import Navbar from "../../components/navbar/Navbar";
 
 const MovieScreen = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -68,6 +68,7 @@ const MovieScreen = () => {
         <MovieList>
           {movies.map((searchMovie) => (
           <SearchedMovieCard
+              key={searchMovie.id}
               id={searchMovie.id}
               name={searchMovie.original_title}
               backdrop_path={searchMovie.backdrop_path}
@@ -86,6 +87,7 @@ const MovieScreen = () => {
         {porpularMovies.length > 0 &&
           porpularMovies?.map((movie) => (
               <PorpularMovieCard
+              key={movie.id}
               id={movie.id}
               name={movie.name}
               backdrop_path={movie.backdrop_path}
