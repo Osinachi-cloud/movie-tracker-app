@@ -121,3 +121,41 @@ transition: all 0.3s ease-out;
 
 
 
+
+
+export const CloseModal = styled.div`
+    position: absolute;
+    right:0;
+    top: 0;
+
+
+`
+export const Form = styled.form`
+    display:flex;
+    flex-direction: column;
+
+
+`
+export const CommentBox = styled.textarea`
+    width:100%;
+    margin-bottom:10px;
+    margin-top:5px;
+    border:none;
+    outline-width:0;
+    padding:10px;
+    border-radius:4px;
+
+
+`
+export const AddCommentButton = styled.button`
+    width:25%;
+    background-color:rgb(70,70,70);
+    border:none;
+    color:white;
+    padding: 5px;
+    border-radius:4px;
+
+`
+
+
+

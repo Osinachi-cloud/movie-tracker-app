@@ -1,9 +1,13 @@
 import React, {useState} from 'react'
 import { useStateValue } from '../../hooks/StateProvider';
-import { pink} from "@mui/material/colors";
+import { pink, grey, yellow} from "@mui/material/colors";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ReactTooltip from "react-tooltip";
+import Modal from "react-modal";
+import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
+import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
+
 import {  
     MovieCard,
     MovieImage,
@@ -14,9 +18,22 @@ import {
     IconWrapper,
   
   } from "./styles";
+import { AddCommentButton, CloseModal, Form, CommentBox } from '../featuredMovie/styles';
+// import { yellow, pink, grey } from "@mui/material/colors";
+
 
 const FavoritesCard = ({id,name, backdrop_path }) => {
     const [isFavorite, setIsFavorite] = useState(false)
+
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    function toggleModal() {
+      console.log("opened")
+      setIsOpen(!isOpen);
+    }
+
+
 
     const [{favorites}, dispatch] = useStateValue();
     const removeFromFavorites =()=>{
@@ -69,7 +86,41 @@ const FavoritesCard = ({id,name, backdrop_path }) => {
                     mark as watched
                </ReactTooltip>
              </IconWrapButton>
+
+
+             <IconWrapButton onClick={toggleModal}>
+                  <IconWrapper>
+                    <DriveFileRenameOutlineIcon
+                      data-tip
+                      data-for="markedAsWatched"
+                      sx={{ color: yellow[500] }}
+                    />
+                  </IconWrapper>
+                  <ReactTooltip id="markedAsWatched" place="bottom" effect="solid">
+                  make comments
+                   
+                  </ReactTooltip>
+            </IconWrapButton>
+
            </ActionWrapper>
+
+     <Modal
+        isOpen={isOpen}
+        onRequestClose={toggleModal}
+        contentLabel="My dialog"
+      >
+        <CloseModal onClick={toggleModal}>
+           <HighlightOffRoundedIcon sx={{ color: grey[500] }}/> 
+           </CloseModal>
+        <div>
+          <Form action="">
+            <CommentBox placeholder="make comments"></CommentBox >
+            <AddCommentButton>submit</AddCommentButton>
+          </Form>
+        </div>
+
+      </Modal>
+
          </MovieCard>
 
     </>

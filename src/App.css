@@ -11,3 +11,33 @@ body{
     padding-right:10px;
     padding-left:10px;
 }
+.ReactModalPortal{
+    /* position:relative; */
+    background-color:green;
+    
+}
+.ReactModal__Overlay{
+    /* background: none !important; */
+    background: none !important;
+    position:absolute !important;
+    top:70vh !important;
+    left: 30px !important;
+    padding: 0 !important;
+    /* transform: translateX(50%); */
+
+
+    width: 400px;
+    height:200px;
+}
+.ReactModal__Content {
+    background-color:#1d1d1d !important;
+    margin:0 !important;
+    border: none !important;
+
+    /* top:18vh !important; */
+    /* width: 100%;
+    height:100%; */
+    /* right: 0 !important; */
+    /* position:absolute; */
+
+}

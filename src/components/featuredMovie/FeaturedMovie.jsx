@@ -1,10 +1,12 @@
-import React from "react";
-import { yellow, pink } from "@mui/material/colors";
+import React, { useState } from "react";
+import { yellow, pink, grey } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { Featured, FeaturedVertical, FeaturedHorizontal, FeaturedName, FeaturedInfo, FeaturedPoints, FeaturedYear, FeaturedSeasons, FeaturedDescription, FeaturedButtons, FeaturedWatchButton, FeaturedMyListButton, FeaturedGenres, FeaturedAddNote, FeaturedAddToWatchList, FeaturedMarkFavorites  } from "./styles";
+import { Featured, FeaturedVertical, FeaturedHorizontal, FeaturedName, FeaturedInfo, FeaturedPoints, FeaturedYear, FeaturedSeasons, FeaturedDescription, FeaturedButtons, FeaturedWatchButton, FeaturedMyListButton, FeaturedGenres, FeaturedAddNote, FeaturedAddToWatchList, FeaturedMarkFavorites, CloseModal, AddCommentButton, CommentBox, Form } from "./styles";
+import Modal from "react-modal";
+import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 
 // import { FaPlay, FaPlus, FaSearch } from 'react-icons/fa';
 
@@ -19,6 +21,14 @@ const item = {
 };
 
 const FeaturedMovie = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  function toggleModal() {
+    console.log("opened")
+    setIsOpen(!isOpen);
+  }
+
+
   console.log(item);
 
   let firstDate = new Date(item.first_air_date);
@@ -60,7 +70,7 @@ const FeaturedMovie = () => {
               <FeaturedAddToWatchList>add to watch list</FeaturedAddToWatchList>
 
             </FeaturedMyListButton>
-            <FeaturedMyListButton to="">
+            <FeaturedMyListButton to="" onClick={toggleModal}>
               <DriveFileRenameOutlineIcon
                 sx={{ color: yellow[500] }}
                 size={13}
@@ -75,6 +85,24 @@ const FeaturedMovie = () => {
           </FeaturedGenres>
         </FeaturedHorizontal>
       </FeaturedVertical>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={toggleModal}
+        contentLabel="My dialog"
+      >
+        
+        <CloseModal onClick={toggleModal}>
+           <HighlightOffRoundedIcon sx={{ color: grey[500] }}/> 
+        </CloseModal>
+        <div>
+          <Form action="">
+            <CommentBox placeholder="make comments"></CommentBox >
+            <AddCommentButton>submit</AddCommentButton>
+          </Form>
+        </div>
+
+      </Modal>
+
     </Featured>
   );
 };

@@ -1,8 +1,11 @@
 import React ,{useState} from 'react'
-import { yellow, pink} from "@mui/material/colors";
+import { yellow, pink, grey} from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
+import Modal from "react-modal";
+import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
+
 
 
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -18,10 +21,19 @@ import ReactTooltip from "react-tooltip";
   
   } from "./styles";
 import { useStateValue } from '../../hooks/StateProvider';
+import { AddCommentButton, CloseModal, Form, CommentBox } from '../featuredMovie/styles';
+
 
 const PorpularMovieCard = ({id, name,backdrop_path }) => {
   const[{favorites}, dispatch]= useStateValue();
   const [isFavorite, setIsFavorite] = useState(false)
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  function toggleModal() {
+    console.log("opened")
+    setIsOpen(!isOpen);
+  }
 
   const removeFromFavorites =()=>{ 
     dispatch({
@@ -106,7 +118,7 @@ const PorpularMovieCard = ({id, name,backdrop_path }) => {
                     
 
 
-                <IconWrapButton>
+                <IconWrapButton onClick={toggleModal}>
                   <IconWrapper>
                     <DriveFileRenameOutlineIcon
                       data-tip
@@ -122,6 +134,25 @@ const PorpularMovieCard = ({id, name,backdrop_path }) => {
 
 
               </ActionWrapper>
+
+              <Modal
+        isOpen={isOpen}
+        onRequestClose={toggleModal}
+        contentLabel="My dialog"
+      >
+        <CloseModal onClick={toggleModal}>
+           <HighlightOffRoundedIcon sx={{ color: grey[500] }}/> 
+           </CloseModal>
+        <div>
+          <Form action="">
+            <CommentBox placeholder="make comments"></CommentBox >
+            <AddCommentButton>submit</AddCommentButton>
+          </Form>
+        </div>
+
+      </Modal>
+
+
             </MovieCard>
 
 
