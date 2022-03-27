@@ -15,29 +15,39 @@ import {
       'Content-Type': 'application/json'
     }
   };
-  
-  const apipoints = {
-    fetchMovies: async (searchTerm, page) => {
+  const deleteConfig = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  class ApiCalls {
+    constructor () {
+      this.session_id = ''
+    }
+
+    async fetchMovies (searchTerm, page) {
       const endpoint = searchTerm
         ? `${SEARCH_BASE_URL}${searchTerm}&page=${page}`
         : `${POPULAR_BASE_URL}&page=${page}`;
       return await (await fetch(endpoint)).json();
-    },
-    fetchMovie: async movieId => {
+    }
+    async fetchMovie (movieId) {
       const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
       return await (await fetch(endpoint)).json();
-    },
-    fetchCredits: async movieId => {
+    }
+    async fetchCredits (movieId) {
       const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
       return await (await fetch(creditsEndpoint)).json();
-    },
-    getRequestToken: async () => {
+    }
+    async getRequestToken () {
       const reqToken = await (await fetch(REQUEST_TOKEN_URL)).json();
       return reqToken.request_token;
 
-    },
-    
-    authenticate: async (requestToken, username, password) => {
+    }
+
+    async authenticate (requestToken, username, password) {
       const bodyData = {
         username,
         password,
@@ -58,10 +68,46 @@ import {
             body: JSON.stringify({ request_token: requestToken })
           })
         ).json();
+        console.log(sessionId.session_id)
+        this.session_id = sessionId.session_id;
         return sessionId;
       }
-    },
-    rateMovie: async (sessionId, movieId, value) => {
+    }
+    async getAccountDetails () {
+      const ACCOUNT_DETAILS_URL = `https://api.themoviedb.org/3/account?api_key=${API_KEY}&session_id=${this.session_id}`
+      console.log(ACCOUNT_DETAILS_URL)
+      const userAccountDetails = await (await fetch(ACCOUNT_DETAILS_URL)).json()
+      console.log(userAccountDetails)
+      const userAccountPayload = {
+        account_id: userAccountDetails.id,
+        username: userAccountDetails.username
+      }
+       console.log(userAccountPayload)
+      return userAccountPayload
+    }
+
+    async logOut() {
+     const LOGOUT_URL = `https://api.themoviedb.org/3/authentication/session?api_key=${API_KEY}`
+    
+     const deleteData = {
+      session_id: this.session_id,
+      
+    };
+    
+     console.log(LOGOUT_URL)
+      const logOutResponse = await (
+        await fetch(LOGOUT_URL,
+        {...deleteConfig,
+      body: JSON.stringify(deleteData)
+    }
+        )
+      ).json();
+        console.log(logOutResponse)
+         return logOutResponse;
+    }
+
+
+    async rateMovie (sessionId, movieId, value) {
       const endpoint = `${API_URL}movie/${movieId}/rating?api_key=${API_KEY}&session_id=${sessionId}`;
   
       const rating = await (
@@ -73,6 +119,11 @@ import {
   
       return rating;
     }
-  };
+  }
+
+  const apipoints = new ApiCalls();
+  apipoints.authenticate();
+
+
   
   export default apipoints;

@@ -30,7 +30,7 @@ const MovieScreen = () => {
       console.log(response.data.results);
       setPorpularMovies(response.data.results);
       console.table(response.data.results);
-      console.log(typeof response.data.results);
+      console.log(typeof( response.data.results));
     } catch (error) {
       console.log(error);
     }
