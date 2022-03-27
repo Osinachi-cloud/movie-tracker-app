@@ -20,7 +20,7 @@ import ReactTooltip from "react-tooltip";
     IconWrapper,
   
   } from "./styles";
-import { useStateValue } from '../../hooks/StateProvider';
+import { useStateValue } from '../../stateContext/StateProvider';
 import { AddCommentButton, CloseModal, Form, CommentBox } from '../featuredMovie/styles';
 
 

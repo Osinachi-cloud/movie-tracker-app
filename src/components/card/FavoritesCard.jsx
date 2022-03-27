@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { useStateValue } from '../../hooks/StateProvider';
+import { useStateValue } from '../../stateContext/StateProvider';
 import { pink, grey, yellow} from "@mui/material/colors";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";

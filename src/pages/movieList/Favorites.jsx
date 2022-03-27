@@ -1,5 +1,5 @@
 import React from "react";
-import { useStateValue } from "../../hooks/StateProvider";
+import { useStateValue } from "../../stateContext/StateProvider";
 import {NavLink } from 'react-router-dom'
 import FavoritesCard from "../../components/card/FavoritesCard";
 import {

@@ -18,7 +18,7 @@ import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
   } from "./styles";
 import { AddCommentButton, CloseModal, Form, CommentBox } from '../featuredMovie/styles';
 
-import { useStateValue } from '../../hooks/StateProvider';
+import { useStateValue } from '../../stateContext/StateProvider';
 
 const SearchedMovieCard = ({id, original_title,backdrop_path }) => {
   const[{favorites}, dispatch]= useStateValue();
