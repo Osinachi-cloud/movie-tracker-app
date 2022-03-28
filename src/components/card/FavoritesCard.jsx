@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useStateValue } from '../../stateContext/StateProvider';
 import { pink, grey, yellow} from "@mui/material/colors";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -7,7 +7,7 @@ import ReactTooltip from "react-tooltip";
 import Modal from "react-modal";
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-
+import API from '../../utils/API';
 import {  
     MovieCard,
     MovieImage,
@@ -22,9 +22,12 @@ import { AddCommentButton, CloseModal, Form, CommentBox } from '../featuredMovie
 // import { yellow, pink, grey } from "@mui/material/colors";
 
 
-const FavoritesCard = ({id,name, backdrop_path }) => {
+const FavoritesCard = ({id ,name, backdrop_path }) => {
     const [isFavorite, setIsFavorite] = useState(false)
-
+    const [mediaId, setMediaId] = useState(null)
+    const [mediaType, setMediaType]= useState("");
+    const [addedToFavorite, setAddedToFavorite] = useState(false)
+    const [error, setError] = useState('')
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -32,6 +35,31 @@ const FavoritesCard = ({id,name, backdrop_path }) => {
       console.log("opened")
       setIsOpen(!isOpen);
     }
+
+ 
+
+    const handleAddFavorites = async () => {
+      setError(false);
+      setMediaId(id)
+      setMediaType("tv")
+      setAddedToFavorite(true)
+      try {
+        const result = await API.markAsFavorites(
+          mediaType,
+          mediaId,
+          addedToFavorite
+        );
+        console.log(result);
+        console.log("submited")
+        // setUser({ sessionId: sessionId.session_id, username });
+        // navigate('/');
+      } catch (error) {
+        setError(true);
+      }
+  
+  
+    };
+  
 
 
 
@@ -46,7 +74,7 @@ const FavoritesCard = ({id,name, backdrop_path }) => {
   return (
     <>
 
-<MovieCard>
+<MovieCard  to = {`/favorites/${id}`} >
            
            <Figure>
              <MovieImage

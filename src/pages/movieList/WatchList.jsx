@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { useStateValue } from "../../stateContext/StateProvider";
-import {NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import FavoritesCard from "../../components/card/FavoritesCard";
 import {
   Container,
@@ -8,34 +8,33 @@ import {
 } from "./styles";
  import API from "../../utils/API";
 
-const Favorites = () => {
+const WatchList = () => {
   const [{ favorites }, dispatch] = useStateValue();
-  const [favotiteTvShows, setFavoriteTvShows] = useState([])
+  const [watchList, setWatchList] = useState([])
 
-  const fetchFavoritesTvShows = async ()=>{
-    const response = await  API.getFavoriteTvShows();
+
+  const watchListTvShows = async ()=>{
+    const response = await  API.getWatchList();
     console.log(response.results)
     console.log(typeof(response.results))
     console.log(typeof(response))
     console.log(response)
-    setFavoriteTvShows(response.results)
+    setWatchList(response.results)
   }
 
-
 useEffect(()=>{
-  fetchFavoritesTvShows()
+  watchListTvShows()
  
 }, [])
 
   return (
-    
     <Container>
       
-      {/* <h2>{favotiteTvShows?.length}</h2> */}
+      <h2>{watchList?.length}</h2>
 
-      {favotiteTvShows.length > 0 ? (
+      {watchList.length > 0 ? (
         <MovieList>
-          {favotiteTvShows.map((item) => (
+          {watchList.map((item) => (
             <FavoritesCard
               id={item.id}
               name={item.name}
@@ -52,4 +51,4 @@ useEffect(()=>{
   );
 };
 
-export default Favorites;
+export default WatchList;

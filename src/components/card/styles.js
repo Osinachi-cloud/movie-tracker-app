@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-
+import { Link } from 'react-router-dom'
 
 export const Title = styled.p`
   font-size: 1.3rem;
@@ -14,7 +14,7 @@ export const Title = styled.p`
   letter-spacing:1;
 `;
 
-export const MovieCard = styled.li`
+export const MovieCard = styled(Link)`
   font-size: 24px;
   color: #e5e5e5;
   font-weight: bold;

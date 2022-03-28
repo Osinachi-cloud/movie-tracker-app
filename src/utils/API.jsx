@@ -25,6 +25,7 @@ import {
   class ApiCalls {
     constructor () {
       this.session_id = ''
+      this.account_id = ''
     }
 
     async fetchMovies (searchTerm, page) {
@@ -83,6 +84,7 @@ import {
         username: userAccountDetails.username
       }
        console.log(userAccountPayload)
+       this.account_id = userAccountPayload.account_id
       return userAccountPayload
     }
 
@@ -104,6 +106,70 @@ import {
       ).json();
         console.log(logOutResponse)
          return logOutResponse;
+    }
+
+    async getFavoriteTvShows (){
+      const GET_FAVORITE_URL = `https://api.themoviedb.org/3/account/${this.account_id}/favorite/tv?api_key=${API_KEY}&language=en-US&sort_by=created_at.asc&page=1&session_id=${this.session_id}`
+      const favoriteTvShowData = await (await fetch(GET_FAVORITE_URL)).json()
+      return favoriteTvShowData;
+    }
+
+ 
+
+
+    async markAsFavorites(media_type, media_id, favorite){
+      const MARK_AS_FAVORITES_URL = `https://api.themoviedb.org/3/account/${this.account_id}/favorite?api_key=${API_KEY}&session_id=${this.session_id}`
+      console.log(MARK_AS_FAVORITES_URL)
+      const bodyData = {
+        media_type,
+        media_id,
+        favorite
+      };
+
+      const data = await (
+        await fetch(MARK_AS_FAVORITES_URL, {
+          ...defaultConfig,
+          body: JSON.stringify(bodyData)
+        })
+      ).json();
+      console.log(`added successfully`)
+      console.log(data.success)
+      return data;
+    }
+
+
+
+
+    async addToWatchList(media_type, media_id, watchlist){
+      const ADD_TO_WATCH_LIST_URL = `https://api.themoviedb.org/3/account/${this.account_id}/watchlist?api_key=${API_KEY}&session_id=${this.session_id}`
+      console.log(ADD_TO_WATCH_LIST_URL)
+      const bodyData = {
+        media_type,
+        media_id,
+        watchlist
+      };
+      const data = await (
+        await fetch(ADD_TO_WATCH_LIST_URL, {
+          ...defaultConfig,
+          body: JSON.stringify(bodyData)
+        })
+      ).json();
+      console.log(`added successfully`)
+      console.log(data.success)
+      return data;
+    }
+
+
+
+
+
+
+
+
+    async getWatchList (){
+      const WATCH_LIST_URL = `https://api.themoviedb.org/3/account/${this.account_id}/watchlist/tv?api_key=${API_KEY}&language=en-US&sort_by=created_at.asc&page=1&session_id=${this.session_id}`
+      const result = await (await fetch(WATCH_LIST_URL)).json()
+      return result;
     }
 
 

@@ -31,7 +31,6 @@ const FormLogin =()=> {
       console.log(sessionId);
       console.log("submited")
       setUser({ sessionId: sessionId.session_id, username });
-      console.log("submitedness")
       navigate('/');
     } catch (error) {
       setError(true);

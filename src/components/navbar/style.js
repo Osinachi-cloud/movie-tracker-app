@@ -111,3 +111,22 @@ export const NavBtnLink = styled(Link)`
     color: #397D32;
   }
 `;
+export const SignUpBtnLink = styled.div`
+  border-radius: 4px;
+  background: #397D32;
+  padding: 8px 15px;
+  font-family:'Lato';
+  color: #fff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  /* Second Nav */
+  margin-left: 24px;
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+    color: #397D32;
+  }
+`;
