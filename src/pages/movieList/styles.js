@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 export const Container = styled.div`
   margin: 0%;
   background-color:#1F2023;
-  padding-top:100px;
+  padding-top:50px;
 
 `;
 

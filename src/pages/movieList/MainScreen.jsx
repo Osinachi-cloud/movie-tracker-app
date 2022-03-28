@@ -16,7 +16,7 @@ import SearchedMovieCard from "../../components/card/SearchedMovieCard";
 import Navbar from "../../components/navbar/Navbar";
 import FeaturedMovie from "../../components/featuredMovie/FeaturedMovie";
 
-const MovieScreen = () => {
+const MainScreen = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
   const [porpularMovies, setPorpularMovies] = useState([]);
@@ -55,7 +55,7 @@ const MovieScreen = () => {
 
   return (
     <>
-      {/* <FeaturedMovie/> */}
+      <FeaturedMovie/>
       <Container>
         <Navbar />
         <SearchInputWrapper>
@@ -102,4 +102,4 @@ const MovieScreen = () => {
   );
 };
 
-export default MovieScreen;
+export default MainScreen;

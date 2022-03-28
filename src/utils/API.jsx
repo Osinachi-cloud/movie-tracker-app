@@ -71,6 +71,7 @@ import {
         ).json();
         console.log(sessionId.session_id)
         this.session_id = sessionId.session_id;
+        console.log(sessionId)
         return sessionId;
       }
     }

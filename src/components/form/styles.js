@@ -4,15 +4,17 @@ import { Link as ReachRouterLink } from 'react-router-dom';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  // min-height: 660px;
-  background-color: rgba(0, 0, 0, 0.95);
+  background-image:url('/assests/img/login-background.jpg');
+  // background: rgba(0,0,0,0.3);
   border-radius: 5px;
   width: 100%;
+  height:90vh;
   margin: auto;
-  margin-top:100px;
-  max-width: 450px;
+  margin-top:50px;
+  // max-width: 450px;
+  justify-content: center;
+  align-items: center;
   padding: 60px 4rem 60px;
-  // margin-bottom: 100px;
 
   @media screen and (max-width: 400px) {
     padding: 60px 2rem 60px;

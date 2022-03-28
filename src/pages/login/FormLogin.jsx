@@ -1,17 +1,19 @@
 import React, { useState, useContext } from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 import API from '../../utils/API';
-
 import  Form  from '../../components/form/Form';
 import {Context} from '../../stateContext/StateProvider';
 
+
 const FormLogin =()=> {
-    const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [_user, setUser] = useContext(Context);
+  const navigate = useNavigate()
+  const location = useLocation();
+  const redirectPath = location.state?.path || '/'
 
   const isInvalid = password === '' || username === '';
 
@@ -28,16 +30,30 @@ const FormLogin =()=> {
         username,
         password
       );
+     
       console.log(sessionId);
       console.log("submited")
       setUser({ sessionId: sessionId.session_id, username });
-      navigate('/');
+
+      navigate('/home');
+      
+
+
+ 
+
     } catch (error) {
       setError(true);
     }
 
 
+
+
+
   };
+  const signup =()=>{
+    alert('this will take you to a new window where you can sign up with tmdb account, then come back and sign in')
+    window.open("https://www.themoviedb.org/signup", '_blank');
+  }
 
   const handleInput = e => {
     const name = e.currentTarget.name;
@@ -56,7 +72,7 @@ const FormLogin =()=> {
             
      
           <Form.Title>Sign In</Form.Title>
-          {error && <Form.Error data-testid="error">{error}</Form.Error>}
+          {error && <Form.Error data-testid="error">{error}wrong username or password</Form.Error>}
 
           <Form.Base onSubmit={handleSignin} method="POST">
             <Form.Input
@@ -82,11 +98,12 @@ const FormLogin =()=> {
           </Form.Base>
 
           <Form.Text>
-                <Form.Link to="/signup">Sign up now.</Form.Link>
+                <Form.Link to="/signup"onClick={signup} >Sign up now.</Form.Link>
           </Form.Text>
           <Form.TextSmall>
             This page is protected by Google reCAPTCHA to ensure you're not a bot. Learn more.
           </Form.TextSmall>
+          
         </Form>
   );
 }

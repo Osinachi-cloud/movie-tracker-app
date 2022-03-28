@@ -8,11 +8,10 @@ import { Featured, FeaturedVertical, FeaturedHorizontal, FeaturedName, FeaturedI
 import Modal from "react-modal";
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 
-// import { FaPlay, FaPlus, FaSearch } from 'react-icons/fa';
 
 const item = {
-  genres: "Action",
-  original_name: "Terminator",
+  genres: "All Genres",
+  original_name: "TV shows I’ve watched",
   vote_average: 1657,
   number_of_seasons: 24,
   overview:
@@ -29,7 +28,6 @@ const FeaturedMovie = () => {
   }
 
 
-  console.log(item);
 
   let firstDate = new Date(item.first_air_date);
   let genres = [];
@@ -90,7 +88,7 @@ const FeaturedMovie = () => {
         onRequestClose={toggleModal}
         contentLabel="My dialog"
       >
-        
+
         <CloseModal onClick={toggleModal}>
            <HighlightOffRoundedIcon sx={{ color: grey[500] }}/> 
         </CloseModal>

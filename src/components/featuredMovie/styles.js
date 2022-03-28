@@ -5,7 +5,7 @@ import Modal from "react-modal";
 
 
 export const Featured = styled.div`
-    height: 90vh;
+    height: 70vh;
     margin-top: 80px;
     background-size: "cover";
     background-position: "center";

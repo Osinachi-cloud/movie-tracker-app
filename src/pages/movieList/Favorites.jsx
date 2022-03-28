@@ -10,13 +10,13 @@ import {
 
 const Favorites = () => {
   const [{ favorites }, dispatch] = useStateValue();
-  const [favotiteTvShows, setFavoriteTvShows] = useState([])
+  const [favoriteTvShows, setFavoriteTvShows] = useState([])
 
   const fetchFavoritesTvShows = async ()=>{
     const response = await  API.getFavoriteTvShows();
-    console.log(response.results)
+    console.log(await response.results)
     console.log(typeof(response.results))
-    console.log(typeof(response))
+    console.log(typeof( response))
     console.log(response)
     setFavoriteTvShows(response.results)
   }
@@ -28,14 +28,15 @@ useEffect(()=>{
 }, [])
 
   return (
-    
+
     <Container>
       
-      {/* <h2>{favotiteTvShows?.length}</h2> */}
+      {/* <h2>{favoriteTvShows?.length}</h2> */}
+      {console.log(favoriteTvShows)}
 
-      {favotiteTvShows.length > 0 ? (
+      {favoriteTvShows.length > 0 ? (
         <MovieList>
-          {favotiteTvShows.map((item) => (
+          {favoriteTvShows.map((item) => (
             <FavoritesCard
               id={item.id}
               name={item.name}
