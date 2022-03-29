@@ -10,7 +10,7 @@ export const Featured = styled.div`
     background-size: "cover";
     background-position: "center";
     @media (max-width: 768px) {
-        height: 95vh;
+        height: fit-content;
     }
 
 `

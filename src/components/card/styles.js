@@ -14,7 +14,7 @@ export const Title = styled.p`
   letter-spacing:1;
 `;
 
-export const MovieCard = styled(Link)`
+export const MovieCard = styled.div`
   font-size: 24px;
   color: #e5e5e5;
   font-weight: bold;
@@ -158,4 +158,9 @@ export const AddCommentButton = styled.button`
 `
 
 
+
+export const ImgLink = styled(Link)`
+
+  
+`;
 

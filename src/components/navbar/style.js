@@ -99,6 +99,8 @@ export const NavBtnLink = styled(Link)`
   font-family:'Lato';
   color: #fff;
   outline: none;
+  font-weight:500;
+
   border: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -116,6 +118,7 @@ export const SignUpBtnLink = styled.div`
   background: #397D32;
   padding: 8px 15px;
   font-family:'Lato';
+  font-weight:900;
   color: #fff;
   outline: none;
   border: none;

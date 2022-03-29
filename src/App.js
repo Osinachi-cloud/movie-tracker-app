@@ -8,6 +8,7 @@ import Navbar from "./components/navbar/Navbar";
 import UserProvider from "./stateContext/StateProvider";
 import WatchList from "./pages/movieList/WatchList";
 import ViewSingleMovieDetails from "./components/featuredMovie/ViewSingleMovieDetails";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -15,16 +16,27 @@ const App = () => {
       <Navbar />
       <UserProvider>
         <Routes>
-          <Route path="/home" element={<MainScreen />} />
-          <Route path="favorites" element={<Favorites />} />
-          <Route path="login" element={<FormLogin />} />
-          <Route path="featured" element={<FeaturedMovie />} />
-          <Route path="watchlist" element={<WatchList />} />
+          <Route exact path="/" element={<ProtectedRoute />}>
+            <Route exact path="/" element={<MainScreen />} />
+          </Route>
+          <Route exact path="/favorites" element={<ProtectedRoute />}>
+            <Route exact path="/favorites" element={<Favorites />} />
+          </Route>
+          <Route exact path="/favorites" element={<ProtectedRoute />}>
+            <Route exact path="/favorites" element={<Favorites />} />
+            <Route path="/favorites/:id" element={<ViewSingleMovieDetails />} />
+
+          </Route>
+          <Route exact path="/watchlist" element={<ProtectedRoute />}>
+            <Route exact path="/watchlist" element={<WatchList />} />
+          </Route>
+
+
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/login" element={<FormLogin />} />
+          {/* <Route path="/featured" element={<FeaturedMovie />} /> */}
+          <Route path="/watchlist" element={<WatchList />} />
           <Route path="/favorites/:id" element={<ViewSingleMovieDetails />} />
-          <Route
-        path="/"
-        element={<FormLogin to="/login" replace />}
-    />
 
           {/* <Route path="/home" element={
           <RequireAuth>
@@ -32,7 +44,6 @@ const App = () => {
           </RequireAuth>
         
         } />  */}
-
         </Routes>
       </UserProvider>
     </>

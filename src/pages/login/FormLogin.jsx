@@ -31,11 +31,13 @@ const FormLogin =()=> {
         password
       );
      
-      console.log(sessionId);
+      console.log(sessionId.success);
+      localStorage.setItem("userLoggedIn", sessionId.success)
+      console.log(localStorage.getItem("userLoggedIn"))
       console.log("submited")
       setUser({ sessionId: sessionId.session_id, username });
 
-      navigate('/home');
+      navigate('/');
       
 
 

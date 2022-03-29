@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
+  
   const [userDetails, setUserDetails] = useState("");
-  const [isLoggedOut, setIsLoggedOut] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("userLoggedIn"));
   const [name, setName] = useState("");
   const navigate = useNavigate()
 
@@ -25,7 +26,7 @@ const Navbar = () => {
       setUserDetails(response.username);
       console.log(localStorage.getItem("username"))
       setName(localStorage.getItem("username"))
-      setIsLoggedOut(false);
+      setIsLoggedIn();
       // window.location.href = '/login'
       console.log('I am logged in')
 
@@ -38,10 +39,10 @@ const Navbar = () => {
 
 
 
-  const logUserOut = () => {
-    API.logOut();
-    setIsLoggedOut(API.logOut);
-    navigate('/')
+  const logUserOut = async () => {
+    const logout = await API.logOut();
+    localStorage.removeItem("userLoggedIn")
+    navigate('/login')
   };
   const signup =()=>{
     alert('this will take you to a new window where you can sign up with tmdb account, then come back and sign in')
@@ -49,8 +50,15 @@ const Navbar = () => {
   }
 
   useEffect(() => {
+    if(localStorage.getItem("userLoggedIn")){
+      getUserDetails()
+      navigate('/')
+    }
+    else{
+    navigate('/login')
 
-    getUserDetails();
+    }
+ 
 
   },[]);
 
@@ -80,19 +88,20 @@ const Navbar = () => {
         <div style={{ display: "flex", justifyContent: "right" }}>
 
 
-          {isLoggedOut ? (
-            <NavBtn>
-              <NavBtnLink to="/login" >log in</NavBtnLink>
-              {/* <NavBtnLink to="/login">sign up</NavBtnLink> */}
+          {localStorage.getItem("userLoggedIn")? (
 
-              <SignUpBtnLink onClick={signup} >Sign up</SignUpBtnLink>
-
-            </NavBtn>
+                <NavBtn>
+                <NavBtnLink to="/login">{`Hi, ${localStorage.getItem('username')}`}</NavBtnLink>   
+                <NavBtnLink to="/login" onClick={logUserOut}>log out</NavBtnLink>
+                </NavBtn>
+           
           ): (
             <NavBtn>
-            <NavBtnLink to="/login">{`Hi, ${name}`}</NavBtnLink>   
-            <NavBtnLink to="/login" onClick={logUserOut}>log out</NavBtnLink>
+            {/* <NavBtnLink to="/login" >log in</NavBtnLink> */}
+            <SignUpBtnLink onClick={signup} >Sign up</SignUpBtnLink>
+
           </NavBtn>
+         
 
           )}
      

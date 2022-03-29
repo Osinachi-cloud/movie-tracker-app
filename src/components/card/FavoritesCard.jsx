@@ -16,6 +16,7 @@ import {
     ActionWrapper,
     IconWrapButton,
     IconWrapper,
+    ImgLink
   
   } from "./styles";
 import { AddCommentButton, CloseModal, Form, CommentBox } from '../featuredMovie/styles';
@@ -74,13 +75,17 @@ const FavoritesCard = ({id ,name, backdrop_path }) => {
   return (
     <>
 
-<MovieCard  to = {`/favorites/${id}`} >
+<MovieCard >
            
            <Figure>
+             <ImgLink to = {`/favorites/${id}`}>
              <MovieImage
                src={`https://image.tmdb.org/t/p/w400/${backdrop_path}`}
                alt={name}
              />
+             
+             </ImgLink>
+          
            </Figure>
            <Title>{name}</Title>
 
