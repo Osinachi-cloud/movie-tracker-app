@@ -1,13 +1,32 @@
 import React, { useState } from "react";
 import { yellow, pink, grey } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { Featured, FeaturedVertical, FeaturedHorizontal, FeaturedName, FeaturedInfo, FeaturedPoints, FeaturedYear, FeaturedSeasons, FeaturedDescription, FeaturedButtons, FeaturedWatchButton, FeaturedMyListButton, FeaturedGenres, FeaturedAddNote, FeaturedAddToWatchList, FeaturedMarkFavorites, CloseModal, AddCommentButton, CommentBox, Form } from "./styles";
+import {
+  Featured,
+  FeaturedVertical,
+  FeaturedHorizontal,
+  FeaturedName,
+  FeaturedInfo,
+  FeaturedPoints,
+  FeaturedYear,
+  FeaturedSeasons,
+  FeaturedDescription,
+  FeaturedButtons,
+  FeaturedWatchButton,
+  FeaturedMyListButton,
+  FeaturedGenres,
+  FeaturedAddNote,
+  FeaturedAddToWatchList,
+  FeaturedMarkFavorites,
+  CloseModal,
+  AddCommentButton,
+  CommentBox,
+  Form,
+} from "./styles";
 import Modal from "react-modal";
-import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
-
+import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 
 const item = {
   genres: "All Genres",
@@ -23,11 +42,9 @@ const HeaderPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleModal() {
-    console.log("opened")
+    console.log("opened");
     setIsOpen(!isOpen);
   }
-
-
 
   let firstDate = new Date(item.first_air_date);
   let genres = [];
@@ -40,7 +57,6 @@ const HeaderPage = () => {
       style={{
         backgroundSize: "cover",
         backgroundPosition: "center",
-        // backgroundImage: `url(https://image.tmdb.org/t/p/original${item.backdrop_path})`
         backgroundImage: `url(${"https://images.unsplash.com/photo-1514514188727-ff38e839635e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"})`,
       }}
     >
@@ -59,14 +75,12 @@ const HeaderPage = () => {
           <FeaturedButtons>
             <FeaturedWatchButton to="">
               {" "}
-              <FavoriteIcon color="success" size={13} /> 
+              <FavoriteIcon color="success" size={13} />
               <FeaturedMarkFavorites>mark as favorites</FeaturedMarkFavorites>
-            
             </FeaturedWatchButton>
             <FeaturedMyListButton to="">
               <CheckCircleIcon sx={{ color: pink[500] }} size={13} />
               <FeaturedAddToWatchList>add to watch list</FeaturedAddToWatchList>
-
             </FeaturedMyListButton>
             <FeaturedMyListButton to="" onClick={toggleModal}>
               <DriveFileRenameOutlineIcon
@@ -74,7 +88,6 @@ const HeaderPage = () => {
                 size={13}
               />
               <FeaturedAddNote>add to watch list</FeaturedAddNote>
-
             </FeaturedMyListButton>
           </FeaturedButtons>
           {/* <div className="featured--genres"><strong>Gêneros:</strong> {genres.join(', ')}</div> */}
@@ -88,19 +101,16 @@ const HeaderPage = () => {
         onRequestClose={toggleModal}
         contentLabel="My dialog"
       >
-
         <CloseModal onClick={toggleModal}>
-           <HighlightOffRoundedIcon sx={{ color: grey[500] }}/> 
+          <HighlightOffRoundedIcon sx={{ color: grey[500] }} />
         </CloseModal>
         <div>
           <Form action="">
-            <CommentBox placeholder="make comments"></CommentBox >
+            <CommentBox placeholder="make comments"></CommentBox>
             <AddCommentButton>submit</AddCommentButton>
           </Form>
         </div>
-
       </Modal>
-
     </Featured>
   );
 };

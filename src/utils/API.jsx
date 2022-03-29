@@ -7,7 +7,6 @@ import {
   LOGIN_URL,
   SESSION_ID_URL,
 } from "./config";
-import axios from "axios";
 
 const defaultConfig = {
   method: "POST",
@@ -53,14 +52,12 @@ class ApiCalls {
       password,
       request_token: requestToken,
     };
-    // First authenticate the requestToken
     const data = await (
       await fetch(LOGIN_URL, {
         ...defaultConfig,
         body: JSON.stringify(bodyData),
       })
     ).json();
-    // Then get the sessionId with the requestToken
     if (data.success) {
       const sessionId = await (
         await fetch(SESSION_ID_URL, {

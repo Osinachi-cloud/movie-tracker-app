@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { yellow, pink, grey } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import SearchIcon from "@mui/icons-material/Search";
 
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {
@@ -31,12 +29,6 @@ import {
 import Modal from "react-modal";
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import {
-  SearchInputWrapper,
-  SearchInput,
-  SearchIconWrapper,
-} from "../movieList/styles";
 import API from "../../utils/API";
 
 const ViewSingleMovieDetails = () => {
@@ -132,8 +124,6 @@ const ViewSingleMovieDetails = () => {
       style={{
         backgroundSize: "cover",
         backgroundPosition: "center",
-
-        // backgroundImage: `url(https://image.tmdb.org/t/p/original${item.backdrop_path})`
 
         backgroundImage: `url(https://image.tmdb.org/t/p/w400/${movieDetails.backdrop_path})`,
       }}

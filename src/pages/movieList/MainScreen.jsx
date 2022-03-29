@@ -9,19 +9,16 @@ import {
   SearchInputWrapper,
   SearchIconWrapper,
 } from "./styles";
-import { NavLink } from "react-router-dom";
-import Nav from "../../components/navbar/Nav"
 
 import PorpularMovieCard from "../../components/card/PorpularMovieCard";
 import SearchedMovieCard from "../../components/card/SearchedMovieCard";
-import Navbar from "../../components/navbar/Navbar";
 import HeaderPage from "../header/HeaderPage";
 
 const MainScreen = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
   const [porpularMovies, setPorpularMovies] = useState([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const movieURL = `https://api.themoviedb.org/3/tv/popular?api_key=20cd3dc0dd8dbf0f80e53b30fb48b367&language=en-US&page=1`;
   const myMovieURL = `https://api.themoviedb.org/3/search/movie?api_key=20cd3dc0dd8dbf0f80e53b30fb48b367&query`;
 
@@ -31,8 +28,6 @@ const MainScreen = () => {
       let response = await axios.get(movieURL);
       console.log(response.data.results);
       setPorpularMovies(response.data.results);
-      // console.table(response.data.results, "*****");
-      // console.log(typeof response.data.results);
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +42,6 @@ const MainScreen = () => {
       setPorpularMovies([]);
     } catch (e) {
       console.log(e);
-
     }
   };
 
@@ -58,10 +52,8 @@ const MainScreen = () => {
 
   return (
     <>
-      <HeaderPage/>
+      <HeaderPage />
       <Container>
-        {/* <Navbar /> */}
-        {/* <Nav /> */}
         <SearchInputWrapper>
           <SearchInput
             placeholder="Search Movies"
@@ -88,18 +80,16 @@ const MainScreen = () => {
           </div>
         )}
         <MovieList>
-        {porpularMovies.length > 0 &&
-          porpularMovies?.map((movie) => (
-            <PorpularMovieCard
-              key={movie.id}
-              id={movie.id}
-              name={movie.name}
-              backdrop_path={movie.backdrop_path}
-            />
-          ))}
+          {porpularMovies.length > 0 &&
+            porpularMovies?.map((movie) => (
+              <PorpularMovieCard
+                key={movie.id}
+                id={movie.id}
+                name={movie.name}
+                backdrop_path={movie.backdrop_path}
+              />
+            ))}
         </MovieList>
-        {/*
-         */}
       </Container>
     </>
   );

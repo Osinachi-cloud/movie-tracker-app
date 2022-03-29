@@ -1,7 +1,4 @@
 import React, { useState, useEffect} from "react";
-import { useStateValue } from "../../stateContext/StateProvider";
-import { NavLink } from 'react-router-dom'
-import FavoritesCard from "../../components/card/FavoritesCard";
 import {
   Container,
   MovieList,
@@ -10,7 +7,6 @@ import {
 import WatchedListCard from "../../components/card/WatchedListCard";
 
 const WatchList = () => {
-  const [{ favorites }, dispatch] = useStateValue();
   const [watchList, setWatchList] = useState([])
 
 

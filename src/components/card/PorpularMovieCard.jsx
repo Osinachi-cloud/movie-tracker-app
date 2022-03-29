@@ -6,7 +6,6 @@ import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutli
 import Modal from "react-modal";
 import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
 import API from "../../utils/API";
-import { Link } from 'react-router-dom'
 
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ReactTooltip from "react-tooltip";
@@ -18,9 +17,8 @@ import {
   ActionWrapper,
   IconWrapButton,
   IconWrapper,
-  ImgLink
+  ImgLink,
 } from "./styles";
-import { useStateValue } from "../../stateContext/StateProvider";
 import {
   AddCommentButton,
   CloseModal,
@@ -29,8 +27,6 @@ import {
 } from "../../pages/header/styles";
 
 const PorpularMovieCard = ({ id, name, backdrop_path }) => {
-  const [{ favorites }, dispatch] = useStateValue();
-  const [isFavorite, setIsFavorite] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [mediaId, setMediaId] = useState(null);
   const [mediaType, setMediaType] = useState("");
@@ -60,10 +56,9 @@ const PorpularMovieCard = ({ id, name, backdrop_path }) => {
       );
       console.log(result);
       console.log("submited");
-      // setUser({ sessionId: sessionId.session_id, username });
-      // navigate('/');
-    } catch (error) {
+    } catch (e) {
       setError(true);
+      console.log(e, error);
     }
     console.log("added to favorite 2");
   };
@@ -85,51 +80,22 @@ const PorpularMovieCard = ({ id, name, backdrop_path }) => {
       );
       console.log(result);
       console.log("submited");
-      // setUser({ sessionId: sessionId.session_id, username });
-      // navigate('/');
     } catch (error) {
       setError(true);
     }
     console.log("added to watchlist");
   };
 
-  const removeFromFavorites = () => {
-    dispatch({
-      type: "REMOVE_FROM_FAVORITES",
-      id: id,
-    });
-    // setIsFavorite(false)
-  };
-
-  const addToFavorites = () => {
-    dispatch({
-      type: "ADD_TO_FAVORITES",
-      item: {
-        id: id,
-        name: name,
-        backdrop_path: backdrop_path,
-      },
-    });
-    // setIsFavorite(true);
-  };
-
   return (
     <>
-    {/* <h1>Hello</h1> */}
-          {/* <IconWrapper onClick={ !isFavorite? addToFavorites : removeFromFavorites}> */}
-     
-      <MovieCard  >
+      <MovieCard>
         <Figure>
-          
-        <ImgLink to = {`/favorites/${id}`}>
+          <ImgLink to={`/favorites/${id}`}>
             <MovieImage
-                src={`https://image.tmdb.org/t/p/w400/${backdrop_path}`}
-                alt={name}
-              />
-
-        </ImgLink>
-
-     
+              src={`https://image.tmdb.org/t/p/w400/${backdrop_path}`}
+              alt={name}
+            />
+          </ImgLink>
         </Figure>
         <Title>{name}</Title>
 
@@ -151,7 +117,7 @@ const PorpularMovieCard = ({ id, name, backdrop_path }) => {
               )}
             </IconWrapper>
             <ReactTooltip id="addTofavorites" place="bottom" effect="solid">
-            add to favorites
+              add to favorites
             </ReactTooltip>
           </IconWrapButton>
 
@@ -198,7 +164,6 @@ const PorpularMovieCard = ({ id, name, backdrop_path }) => {
           </div>
         </Modal>
       </MovieCard>
-
     </>
   );
 };

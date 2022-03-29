@@ -1,6 +1,4 @@
 import React, { useState, useEffect} from "react";
-import { useStateValue } from "../../stateContext/StateProvider";
-import {NavLink } from 'react-router-dom'
 import FavoritesCard from "../../components/card/FavoritesCard";
 import {
   Container,
@@ -9,7 +7,6 @@ import {
  import API from "../../utils/API";
 
 const Favorites = () => {
-  const [{ favorites }, dispatch] = useStateValue();
   const [favoriteTvShows, setFavoriteTvShows] = useState([])
 
   const fetchFavoritesTvShows = async ()=>{
@@ -31,7 +28,6 @@ useEffect(()=>{
 
     <Container>
       
-      {/* <h2>{favoriteTvShows?.length}</h2> */}
       {console.log(favoriteTvShows)}
 
       {favoriteTvShows.length > 0 ? (

@@ -1,175 +1,124 @@
-import React, {useState, useEffect} from 'react'
-import { useStateValue } from '../../stateContext/StateProvider';
-import { pink, grey, yellow} from "@mui/material/colors";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import React, { useState } from "react";
+import { pink, grey, yellow } from "@mui/material/colors";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ReactTooltip from "react-tooltip";
 import Modal from "react-modal";
-import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
-import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-import API from '../../utils/API';
-import {  
-    MovieCard,
-    MovieImage,
-    Title,
-    Figure,
-    ActionWrapper,
-    IconWrapButton,
-    IconWrapper,
-    ImgLink
-  
-  } from "./styles";
-import { AddCommentButton, CloseModal, Form, CommentBox } from '../../pages/header/styles';
-// import { yellow, pink, grey } from "@mui/material/colors";
+import HighlightOffRoundedIcon from "@mui/icons-material/HighlightOffRounded";
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+import API from "../../utils/API";
+import {
+  MovieCard,
+  MovieImage,
+  Title,
+  Figure,
+  ActionWrapper,
+  IconWrapButton,
+  IconWrapper,
+  ImgLink,
+} from "./styles";
+import {
+  AddCommentButton,
+  CloseModal,
+  Form,
+  CommentBox,
+} from "../../pages/header/styles";
 
-
-const FavoritesCard = ({id ,name, backdrop_path }) => {
-    const [isFavorite, setIsFavorite] = useState(false)
-    const [mediaId, setMediaId] = useState(null)
-    const [mediaType, setMediaType]= useState("");
-    const [addedToFavorite, setAddedToFavorite] = useState(false)
-    const [error, setError] = useState('')
+const FavoritesCard = ({ id, name, backdrop_path }) => {
+  const [mediaId, setMediaId] = useState(null);
+  const [mediaType, setMediaType] = useState("");
+  const [error, setError] = useState("");
   const [addedToWatchList, setAddedToWatchList] = useState(false);
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-    function toggleModal() {
-      console.log("opened")
-      setIsOpen(!isOpen);
+  function toggleModal() {
+    console.log("opened");
+    setIsOpen(!isOpen);
+  }
+
+  const handleAddWatchList = async () => {
+    console.log("added to watchlist");
+    setError(false);
+    setMediaId(id);
+    console.log(id);
+    setMediaType("tv");
+    console.log(mediaType);
+    setAddedToWatchList(true);
+    console.log(addedToWatchList);
+    try {
+      const result = await API.addToWatchList(
+        mediaType,
+        mediaId,
+        addedToWatchList
+      );
+      console.log(result);
+      console.log("submited");
+    } catch (e) {
+      console.log(error, e);
+      setError(true);
     }
+    console.log("added to watchlist");
+  };
 
- 
-
-    const handleAddFavorites = async () => {
-      setError(false);
-      setMediaId(id)
-      setMediaType("tv")
-      setAddedToFavorite(true)
-      try {
-        const result = await API.markAsFavorites(
-          mediaType,
-          mediaId,
-          addedToFavorite
-        );
-        console.log(result);
-        console.log("submited")
-        // setUser({ sessionId: sessionId.session_id, username });
-        // navigate('/');
-      } catch (error) {
-        setError(true);
-      }
-  
-  
-    };
-
-
-    const handleAddWatchList = async () => {
-      console.log("added to watchlist");
-      setError(false);
-      setMediaId(id);
-      console.log(id);
-      setMediaType("tv");
-      console.log(mediaType);
-      setAddedToWatchList(true);
-      console.log(addedToWatchList);
-      try {
-        const result = await API.addToWatchList(
-          mediaType,
-          mediaId,
-          addedToWatchList
-        );
-        console.log(result);
-        console.log("submited");
-        // setUser({ sessionId: sessionId.session_id, username });
-        // navigate('/');
-      } catch (error) {
-        setError(true);
-      }
-      console.log("added to watchlist");
-    };
-  
-
-
-
-    const [{favorites}, dispatch] = useStateValue();
-    const removeFromFavorites =()=>{
-        dispatch({
-            type: 'REMOVE_FROM_FAVORITES',
-            id: id,
-        })
-        setIsFavorite(!isFavorite)
-    }
   return (
     <>
+      <MovieCard>
+        <Figure>
+          <ImgLink to={`/favorites/${id}`}>
+            <MovieImage
+              src={`https://image.tmdb.org/t/p/w400/${backdrop_path}`}
+              alt={name}
+            />
+          </ImgLink>
+        </Figure>
+        <Title>{name}</Title>
 
-<MovieCard >
-           
-           <Figure>
-             <ImgLink to = {`/favorites/${id}`}>
-             <MovieImage
-               src={`https://image.tmdb.org/t/p/w400/${backdrop_path}`}
-               alt={name}
-             />
-             
-             </ImgLink>
-          
-           </Figure>
-           <Title>{name}</Title>
+        <ActionWrapper>
+          <IconWrapButton>
+            <IconWrapper onClick={handleAddWatchList}>
+              <CheckCircleIcon
+                data-tip
+                data-for="markedWatch"
+                sx={{ color: pink[500] }}
+              />
+            </IconWrapper>
+            <ReactTooltip id="markedWatch" place="bottom" effect="solid">
+              mark as watched
+            </ReactTooltip>
+          </IconWrapButton>
 
-           <ActionWrapper>
-           
+          <IconWrapButton onClick={toggleModal}>
+            <IconWrapper>
+              <DriveFileRenameOutlineIcon
+                data-tip
+                data-for="markedAsWatched"
+                sx={{ color: yellow[500] }}
+              />
+            </IconWrapper>
+            <ReactTooltip id="markedAsWatched" place="bottom" effect="solid">
+              make comments
+            </ReactTooltip>
+          </IconWrapButton>
+        </ActionWrapper>
 
-             <IconWrapButton>
-               <IconWrapper onClick={handleAddWatchList}>
-                 <CheckCircleIcon
-                   data-tip
-                   data-for="markedWatch"
-                   sx={{ color: pink[500] }}
-                 />
-               </IconWrapper>
-               <ReactTooltip id="markedWatch" place="bottom" effect="solid">
-                    mark as watched
-               </ReactTooltip>
-             </IconWrapButton>
-
-
-             <IconWrapButton onClick={toggleModal}>
-                  <IconWrapper>
-                    <DriveFileRenameOutlineIcon
-                      data-tip
-                      data-for="markedAsWatched"
-                      sx={{ color: yellow[500] }}
-                    />
-                  </IconWrapper>
-                  <ReactTooltip id="markedAsWatched" place="bottom" effect="solid">
-                  make comments
-                   
-                  </ReactTooltip>
-            </IconWrapButton>
-
-           </ActionWrapper>
-
-     <Modal
-        isOpen={isOpen}
-        onRequestClose={toggleModal}
-        contentLabel="My dialog"
-      >
-        <CloseModal onClick={toggleModal}>
-           <HighlightOffRoundedIcon sx={{ color: grey[500] }}/> 
-           </CloseModal>
-        <div>
-          <Form action="">
-            <CommentBox placeholder="make comments"></CommentBox >
-            <AddCommentButton>submit</AddCommentButton>
-          </Form>
-        </div>
-
-      </Modal>
-
-         </MovieCard>
-
+        <Modal
+          isOpen={isOpen}
+          onRequestClose={toggleModal}
+          contentLabel="My dialog"
+        >
+          <CloseModal onClick={toggleModal}>
+            <HighlightOffRoundedIcon sx={{ color: grey[500] }} />
+          </CloseModal>
+          <div>
+            <Form action="">
+              <CommentBox placeholder="make comments"></CommentBox>
+              <AddCommentButton>submit</AddCommentButton>
+            </Form>
+          </div>
+        </Modal>
+      </MovieCard>
     </>
-  )
-}
+  );
+};
 
-export default FavoritesCard
 
+export default FavoritesCard;
