@@ -48,9 +48,9 @@ const WatchedListCard = ({ id, name, backdrop_path }) => {
     console.log(addedToFavorite);
     try {
       const result = await API.markAsFavorites(
-        mediaType,
-        mediaId,
-        addedToFavorite
+        "tv",
+        id,
+        true
       );
       console.log(result);
       console.log("submited");

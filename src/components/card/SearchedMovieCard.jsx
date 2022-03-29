@@ -48,9 +48,9 @@ const SearchedMovieCard = ({ id, original_title, backdrop_path }) => {
     console.log(addedToFavorite);
     try {
       const result = await API.markAsFavorites(
-        mediaType,
-        mediaId,
-        addedToFavorite
+        "tv",
+        id,
+        true
       );
       console.log(result);
       console.log("submited");
@@ -72,9 +72,9 @@ const SearchedMovieCard = ({ id, original_title, backdrop_path }) => {
     console.log(addedToWatchList);
     try {
       const result = await API.addToWatchList(
-        mediaType,
-        mediaId,
-        addedToWatchList
+        "tv",
+        id,
+        true
       );
       console.log(result);
       console.log("submited");
