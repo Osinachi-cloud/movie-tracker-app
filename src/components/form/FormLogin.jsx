@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import API from "../../utils/API";
-import Form from "../../components/form/Form";
+import Form from "./FormHandler";
 import { Context } from "../../stateContext/StateProvider";
 
 const FormLogin = () => {

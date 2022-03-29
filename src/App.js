@@ -2,7 +2,7 @@ import "./App.css";
 import Favorites from "./pages/movieList/Favorites";
 import { Routes, Route } from "react-router-dom";
 import MainScreen from "./pages/movieList/MainScreen";
-import FormLogin from "./pages/login/FormLogin";
+import FormLogin from "./components/form/FormLogin";
 import UserProvider from "./stateContext/StateProvider";
 import WatchList from "./pages/movieList/WatchList";
 import ViewSingleMovieDetails from "./pages/header/ViewSingleMovieDetails";
