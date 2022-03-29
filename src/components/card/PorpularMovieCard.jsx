@@ -26,7 +26,7 @@ import {
   CloseModal,
   Form,
   CommentBox,
-} from "../featuredMovie/styles";
+} from "../../pages/header/styles";
 
 const PorpularMovieCard = ({ id, name, backdrop_path }) => {
   const [{ favorites }, dispatch] = useStateValue();

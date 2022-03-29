@@ -23,7 +23,7 @@ import ReactTooltip from "react-tooltip";
   
   } from "./styles";
 import { useStateValue } from '../../stateContext/StateProvider';
-import { AddCommentButton, CloseModal, Form, CommentBox } from '../featuredMovie/styles';
+import { AddCommentButton, CloseModal, Form, CommentBox } from '../../pages/header/styles';
 
 
 const WatchedListCard = ({id, name,backdrop_path }) => {

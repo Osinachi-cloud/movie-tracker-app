@@ -19,7 +19,7 @@ import {
     ImgLink
   
   } from "./styles";
-import { AddCommentButton, CloseModal, Form, CommentBox } from '../featuredMovie/styles';
+import { AddCommentButton, CloseModal, Form, CommentBox } from '../../pages/header/styles';
 // import { yellow, pink, grey } from "@mui/material/colors";
 
 

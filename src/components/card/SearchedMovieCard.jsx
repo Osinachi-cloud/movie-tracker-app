@@ -19,7 +19,7 @@ import API from "../../utils/API";
     ImgLink
   
   } from "./styles";
-import { AddCommentButton, CloseModal, Form, CommentBox } from '../featuredMovie/styles';
+import { AddCommentButton, CloseModal, Form, CommentBox } from '../../pages/header/styles';
 
 import { useStateValue } from '../../stateContext/StateProvider';
 

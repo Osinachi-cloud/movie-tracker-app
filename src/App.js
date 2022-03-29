@@ -5,7 +5,7 @@ import MainScreen from "./pages/movieList/MainScreen";
 import FormLogin from "./pages/login/FormLogin";
 import UserProvider from "./stateContext/StateProvider";
 import WatchList from "./pages/movieList/WatchList";
-import ViewSingleMovieDetails from "./components/featuredMovie/ViewSingleMovieDetails";
+import ViewSingleMovieDetails from "./pages/header/ViewSingleMovieDetails";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Nav from "./components/navbar/Nav";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";

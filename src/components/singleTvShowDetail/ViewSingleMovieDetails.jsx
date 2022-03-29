@@ -36,7 +36,7 @@ import {
   SearchInputWrapper,
   SearchInput,
   SearchIconWrapper,
-} from "../../pages/movieList/styles";
+} from "../movieList/styles";
 import API from "../../utils/API";
 
 const ViewSingleMovieDetails = () => {

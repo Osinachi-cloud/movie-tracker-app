@@ -15,7 +15,7 @@ import Nav from "../../components/navbar/Nav"
 import PorpularMovieCard from "../../components/card/PorpularMovieCard";
 import SearchedMovieCard from "../../components/card/SearchedMovieCard";
 import Navbar from "../../components/navbar/Navbar";
-import HeaderPage from "../../components/featuredMovie/HeaderPage";
+import HeaderPage from "../header/HeaderPage";
 
 const MainScreen = () => {
   const [searchTerm, setSearchTerm] = useState("");
