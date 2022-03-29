@@ -12,7 +12,7 @@ import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import { SearchInputWrapper, SearchInput, SearchIconWrapper } from "../../pages/movieList/styles";
-
+import API from "../../utils/API";
 
 const item = {
   genres: "Action",
@@ -27,7 +27,13 @@ const item = {
 const ViewSingleMovieDetails = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [movieDetails, setMovieDetails] = useState({})
+  const [mediaId, setMediaId] = useState(null);
+  const [mediaType, setMediaType] = useState("");
+  const [addedToFavorite, setAddedToFavorite] = useState(false);
+  const [addedToWatchList, setAddedToWatchList] = useState(false);
   const { id } = useParams();
+  const [error, setError] = useState("");
+
 
   function toggleModal() {
     console.log("opened")
@@ -64,6 +70,59 @@ const ViewSingleMovieDetails = () => {
       }
 
   }
+
+
+  const handleAddFavorites = async () => {
+    console.log("added to favorite 1");
+    setError(false);
+    setMediaId(id);
+    console.log(id);
+    setMediaType("tv");
+    console.log(mediaType);
+    setAddedToFavorite(true);
+    console.log(addedToFavorite);
+    try {
+      const result = await API.markAsFavorites(
+        mediaType,
+        mediaId,
+        addedToFavorite
+      );
+      console.log(result);
+      console.log("submited");
+      // setUser({ sessionId: sessionId.session_id, username });
+      // navigate('/');
+    } catch (error) {
+      setError(true);
+    }
+    console.log("added to favorite 2");
+  };
+
+
+
+  const handleAddWatchList = async () => {
+    console.log("added to watchlist");
+    setError(false);
+    setMediaId(id);
+    console.log(id);
+    setMediaType("tv");
+    console.log(mediaType);
+    setAddedToWatchList(true);
+    console.log(addedToWatchList);
+    try {
+      const result = await API.addToWatchList(
+        mediaType,
+        mediaId,
+        addedToWatchList
+      );
+      console.log(result);
+      console.log("submited");
+      // setUser({ sessionId: sessionId.session_id, username });
+      // navigate('/');
+    } catch (error) {
+      setError(true);
+    }
+    console.log("added to watchlist");
+  };
 
   useEffect(()=>{
     getSingleTvDetails()
@@ -102,13 +161,13 @@ const ViewSingleMovieDetails = () => {
           </FeaturedInfo>
           <FeaturedDescription>{movieDetails.overview}</FeaturedDescription>
           <FeaturedButtons>
-            <FeaturedWatchButton to="">
+            <FeaturedWatchButton onClick={handleAddFavorites}  to="">
               {" "}
               <FavoriteIcon color="success" size={13} /> 
               <FeaturedMarkFavorites>mark as favorites</FeaturedMarkFavorites>
             
             </FeaturedWatchButton>
-            <FeaturedMyListButton to="">
+            <FeaturedMyListButton onClick ={handleAddWatchList} to="">
               <CheckCircleIcon sx={{ color: pink[500] }} size={13} />
               <FeaturedAddToWatchList>add to watch list</FeaturedAddToWatchList>
 

@@ -29,7 +29,7 @@ const FavoritesCard = ({id ,name, backdrop_path }) => {
     const [mediaType, setMediaType]= useState("");
     const [addedToFavorite, setAddedToFavorite] = useState(false)
     const [error, setError] = useState('')
-
+  const [addedToWatchList, setAddedToWatchList] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
     function toggleModal() {
@@ -59,6 +59,32 @@ const FavoritesCard = ({id ,name, backdrop_path }) => {
       }
   
   
+    };
+
+
+    const handleAddWatchList = async () => {
+      console.log("added to watchlist");
+      setError(false);
+      setMediaId(id);
+      console.log(id);
+      setMediaType("tv");
+      console.log(mediaType);
+      setAddedToWatchList(true);
+      console.log(addedToWatchList);
+      try {
+        const result = await API.addToWatchList(
+          mediaType,
+          mediaId,
+          addedToWatchList
+        );
+        console.log(result);
+        console.log("submited");
+        // setUser({ sessionId: sessionId.session_id, username });
+        // navigate('/');
+      } catch (error) {
+        setError(true);
+      }
+      console.log("added to watchlist");
     };
   
 
@@ -90,25 +116,10 @@ const FavoritesCard = ({id ,name, backdrop_path }) => {
            <Title>{name}</Title>
 
            <ActionWrapper>
-             <IconWrapButton>
-               <IconWrapper onClick={removeFromFavorites}>
-                 <FavoriteBorderIcon
-                   data-tip
-                   data-for="removeFromfavorites"
-                   color="success"
-                 />
-               </IconWrapper>
-               <ReactTooltip
-                 id="removeFromfavorites"
-                 place="bottom"
-                 effect="solid"
-               >   { isFavorite? 'add to favorites' : "remove from favorites" }
-                 
-               </ReactTooltip>
-             </IconWrapButton>
+           
 
              <IconWrapButton>
-               <IconWrapper>
+               <IconWrapper onClick={handleAddWatchList}>
                  <CheckCircleIcon
                    data-tip
                    data-for="markedWatch"

@@ -9,11 +9,14 @@ import UserProvider from "./stateContext/StateProvider";
 import WatchList from "./pages/movieList/WatchList";
 import ViewSingleMovieDetails from "./components/featuredMovie/ViewSingleMovieDetails";
 import ProtectedRoute from "./components/ProtectedRoute";
+import SideBar from "./components/navbar/sidebar/SideBar";
+import  Nav  from "./components/navbar/Nav";
 
 const App = () => {
   return (
     <>
-      <Navbar />
+    {/* <Nav/> */}
+
       <UserProvider>
         <Routes>
           <Route exact path="/" element={<ProtectedRoute />}>
@@ -34,7 +37,7 @@ const App = () => {
 
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/login" element={<FormLogin />} />
-          {/* <Route path="/featured" element={<FeaturedMovie />} /> */}
+          <Route path="/featured" element={<FeaturedMovie />} />
           <Route path="/watchlist" element={<WatchList />} />
           <Route path="/favorites/:id" element={<ViewSingleMovieDetails />} />
 

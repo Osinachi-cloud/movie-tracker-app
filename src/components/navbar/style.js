@@ -5,7 +5,6 @@ import styled from 'styled-components/macro';
 export const Nav = styled.nav`
   background: #1B1A1E;
   height:80px;
-  // background:red;
   // height: fit-content;
   display: flex;
   justify-content: space-between;

@@ -18,6 +18,7 @@ import {
   ActionWrapper,
   IconWrapButton,
   IconWrapper,
+  ImgLink
 } from "./styles";
 import { useStateValue } from "../../stateContext/StateProvider";
 import {
@@ -117,12 +118,18 @@ const PorpularMovieCard = ({ id, name, backdrop_path }) => {
     {/* <h1>Hello</h1> */}
           {/* <IconWrapper onClick={ !isFavorite? addToFavorites : removeFromFavorites}> */}
      
-      <MovieCard  to="/">
+      <MovieCard  >
         <Figure>
-          <MovieImage
-            src={`https://image.tmdb.org/t/p/w400/${backdrop_path}`}
-            alt={name}
-          />
+          
+        <ImgLink to = {`/favorites/${id}`}>
+            <MovieImage
+                src={`https://image.tmdb.org/t/p/w400/${backdrop_path}`}
+                alt={name}
+              />
+
+        </ImgLink>
+
+     
         </Figure>
         <Title>{name}</Title>
 
@@ -132,7 +139,7 @@ const PorpularMovieCard = ({ id, name, backdrop_path }) => {
               {addedToFavorite ? (
                 <FavoriteIcon
                   data-tip
-                  data-for="mark as watched"
+                  data-for="add to Favorites"
                   color="success"
                 />
               ) : (
@@ -144,7 +151,7 @@ const PorpularMovieCard = ({ id, name, backdrop_path }) => {
               )}
             </IconWrapper>
             <ReactTooltip id="addTofavorites" place="bottom" effect="solid">
-              {addedToFavorite ? " add to favorites" : " remove from favorites"}
+            add to favorites
             </ReactTooltip>
           </IconWrapButton>
 
@@ -157,7 +164,7 @@ const PorpularMovieCard = ({ id, name, backdrop_path }) => {
               />
             </IconWrapper>
             <ReactTooltip id="markedAsWatched" place="bottom" effect="solid">
-              mark as watched
+              add to watchlist
             </ReactTooltip>
           </IconWrapButton>
 
@@ -165,11 +172,11 @@ const PorpularMovieCard = ({ id, name, backdrop_path }) => {
             <IconWrapper>
               <DriveFileRenameOutlineIcon
                 data-tip
-                data-for="markedAsWatched"
+                data-for="makecomment"
                 sx={{ color: yellow[500] }}
               />
             </IconWrapper>
-            <ReactTooltip id="markedAsWatched" place="bottom" effect="solid">
+            <ReactTooltip id="makecomment" place="bottom" effect="solid">
               make comments
             </ReactTooltip>
           </IconWrapButton>

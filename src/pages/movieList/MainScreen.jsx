@@ -10,6 +10,7 @@ import {
   SearchIconWrapper,
 } from "./styles";
 import { NavLink } from "react-router-dom";
+import Nav from "../../components/navbar/Nav"
 
 import PorpularMovieCard from "../../components/card/PorpularMovieCard";
 import SearchedMovieCard from "../../components/card/SearchedMovieCard";
@@ -57,7 +58,8 @@ const MainScreen = () => {
     <>
       <FeaturedMovie/>
       <Container>
-        <Navbar />
+        {/* <Navbar /> */}
+        <Nav />
         <SearchInputWrapper>
           <SearchInput
             placeholder="Search Movies"

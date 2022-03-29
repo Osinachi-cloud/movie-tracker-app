@@ -7,6 +7,7 @@ import {
   MovieList,
 } from "./styles";
  import API from "../../utils/API";
+import WatchedListCard from "../../components/card/WatchedListCard";
 
 const WatchList = () => {
   const [{ favorites }, dispatch] = useStateValue();
@@ -35,7 +36,7 @@ useEffect(()=>{
       {watchList.length > 0 ? (
         <MovieList>
           {watchList.map((item) => (
-            <FavoritesCard
+            <WatchedListCard
               id={item.id}
               name={item.name}
               backdrop_path={item.backdrop_path}

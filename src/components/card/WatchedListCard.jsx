@@ -19,6 +19,7 @@ import ReactTooltip from "react-tooltip";
     ActionWrapper,
     IconWrapButton,
     IconWrapper,
+    ImgLink
   
   } from "./styles";
 import { useStateValue } from '../../stateContext/StateProvider';
@@ -95,61 +96,39 @@ const WatchedListCard = ({id, name,backdrop_path }) => {
          <MovieCard>
            
               <Figure>
+             <ImgLink to = {`/favorites/${id}`}>
+
                 <MovieImage
                   src={`https://image.tmdb.org/t/p/w400/${backdrop_path}`}
                   alt={name}
                 />
+                </ImgLink>
               </Figure>
               <Title>{name}</Title>
 
               <ActionWrapper>
                 <IconWrapButton>
+               <IconWrapper onClick={handleAddFavorites}>
+                 <FavoriteBorderIcon
+                   data-tip
+                   data-for="removeFromfavorites"
+                   color="success"
+                 />
+               </IconWrapper>
+               <ReactTooltip
+                 id="removeFromfavorites"
+                 place="bottom"
+                 effect="solid"
+               >  add to favorites
+                 
+               </ReactTooltip>
+             </IconWrapButton>
+
+
+
+        
+
                 
-                  {/* <IconWrapper onClick={ !isFavorite? addToFavorites : removeFromFavorites}> */}
-                  <IconWrapper onClick={handleAddFavorites}>
-
-                    {
-                      addedToFavorite?  (
-                        <FavoriteIcon
-                        data-tip
-                        data-for="mark as watched"
-                        color="success"
-                      />
-                      ) 
-                     : (
-                      <FavoriteBorderIcon
-                      data-tip
-                      data-for="addTofavorites"
-                      color="success"
-                    />
-
-                     )
-                    }
-                
-                  </IconWrapper>
-                  <ReactTooltip
-                    id="addTofavorites"
-                    place="bottom"
-                    effect="solid"
-                  >
-                    {addedToFavorite? ' add to favorites': ' remove from favorites'}
-                    
-                  </ReactTooltip>
-                </IconWrapButton>
-
-                <IconWrapButton>
-                  <IconWrapper>
-                    <CheckCircleIcon
-                      data-tip
-                      data-for="markedAsWatched"
-                      sx={{ color: pink[500] }}
-                    />
-                  </IconWrapper>
-                  <ReactTooltip id="markedAsWatched" place="bottom" effect="solid">
-                  mark as watched
-                   
-                  </ReactTooltip>
-                </IconWrapButton>
                     
 
 
