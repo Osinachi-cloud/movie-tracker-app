@@ -88,7 +88,8 @@ export const CloseIconBurger = styled(CloseIcon)`
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: -24px;
+  // margin-right: -24px;
+  margin: 0 auto;
   /* Second Nav */
   /* margin-right: 24px; */
   /* Third Nav */
