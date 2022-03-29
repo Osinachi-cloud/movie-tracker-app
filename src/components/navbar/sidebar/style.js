@@ -1,6 +1,5 @@
 import styled from 'styled-components/macro';
 import CloseIcon from '@mui/icons-material/Close';
-import MenuIcon from '@mui/icons-material/Menu';
 import { Link as LinkR } from 'react-scroll'
 import { Link as LinkS } from 'react-router-dom'
 

@@ -1,7 +1,6 @@
 import React from "react";
 import {
   SidebarContainer,
-  CloseIconBar,
   Icon,
   SidebarWrapper,
   SidebarMenu,
@@ -23,6 +22,7 @@ const SideBar = ({ isOpen, toggle, setIsOpen }) => {
   };
   const logUserOut = async () => {
     const logout = await API.logOut();
+    console.log(logout);
     localStorage.removeItem("userLoggedIn");
     setIsOpen(!isOpen);
     navigate("/login");

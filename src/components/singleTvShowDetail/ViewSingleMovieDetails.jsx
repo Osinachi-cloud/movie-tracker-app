@@ -69,7 +69,7 @@ const ViewSingleMovieDetails = () => {
       console.log(response);
       console.log(id);
     } catch (e) {
-      console.log(e);
+      console.log(e, error);
     }
   };
 

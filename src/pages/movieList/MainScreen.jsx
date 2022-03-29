@@ -23,13 +23,14 @@ const MainScreen = () => {
   const myMovieURL = `https://api.themoviedb.org/3/search/movie?api_key=20cd3dc0dd8dbf0f80e53b30fb48b367&query`;
 
   const FetchDataFromApi = async () => {
-    const BaseUrl = `https://api.themoviedb.org/3/movie/550?api_key=20cd3dc0dd8dbf0f80e53b30fb48b367`;
     try {
       let response = await axios.get(movieURL);
       console.log(response.data.results);
       setPorpularMovies(response.data.results);
+      setError(null)
     } catch (error) {
       console.log(error);
+      setError("error in the connection")
     }
   };
 

@@ -13,12 +13,8 @@ import {
 } from "./style";
 import { useNavigate } from "react-router-dom";
 
-
 const Navbar = ({ toggle, setIsOpen, isOpen }) => {
   const [userDetails, setUserDetails] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("userLoggedIn")
-  );
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
@@ -29,16 +25,13 @@ const Navbar = ({ toggle, setIsOpen, isOpen }) => {
     console.log(response.username);
 
     try {
-      // localStorage.clear();
-      // localStorage.removeItem("user")
       localStorage.setItem("username", response.username);
       API.authenticate();
       setUserDetails(response.username);
       console.log(localStorage.getItem("username"));
       setName(localStorage.getItem("username"));
-      setIsLoggedIn();
-      // window.location.href = '/login'
       console.log("I am logged in");
+      console.log(userDetails, name);
     } catch (e) {
       console.log(e);
     }
@@ -46,6 +39,7 @@ const Navbar = ({ toggle, setIsOpen, isOpen }) => {
 
   const logUserOut = async () => {
     const logout = await API.logOut();
+    console.log(logout);
     localStorage.removeItem("userLoggedIn");
     navigate("/login");
   };
