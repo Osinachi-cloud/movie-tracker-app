@@ -78,6 +78,7 @@ class ApiCalls {
     )}`;
     console.log(ACCOUNT_DETAILS_URL);
     const userAccountDetails = await (await fetch(ACCOUNT_DETAILS_URL)).json();
+    localStorage.setItem("user_account_id",userAccountDetails.id)
     console.log(userAccountDetails);
     const userAccountPayload = {
       account_id: userAccountDetails.id,
@@ -108,13 +109,16 @@ class ApiCalls {
   }
 
   async getFavoriteTvShows() {
-    const GET_FAVORITE_URL = `https://api.themoviedb.org/3/account/${this.account_id}/favorite/tv?api_key=${API_KEY}&language=en-US&sort_by=created_at.asc&page=1&session_id=${this.session_id}`;
+    const GET_FAVORITE_URL = `https://api.themoviedb.org/3/account/${localStorage.getItem("user_account_id")}/favorite/tv?api_key=${API_KEY}&language=en-US&sort_by=created_at.asc&page=1&session_id=${localStorage.getItem(
+      "movie_tracker_session_id")}`;
     const favoriteTvShowData = await (await fetch(GET_FAVORITE_URL)).json();
     return favoriteTvShowData;
   }
+  
 
   async markAsFavorites(media_type, media_id, favorite) {
-    const MARK_AS_FAVORITES_URL = `https://api.themoviedb.org/3/account/${this.account_id}/favorite?api_key=${API_KEY}&session_id=${this.session_id}`;
+    const MARK_AS_FAVORITES_URL = `https://api.themoviedb.org/3/account/${localStorage.getItem("user_account_id")}/favorite?api_key=${API_KEY}&session_id=${localStorage.getItem(
+      "movie_tracker_session_id")}`;
     console.log(MARK_AS_FAVORITES_URL);
     const bodyData = {
       media_type,
@@ -134,7 +138,8 @@ class ApiCalls {
   }
 
   async addToWatchList(media_type, media_id, watchlist) {
-    const ADD_TO_WATCH_LIST_URL = `https://api.themoviedb.org/3/account/${this.account_id}/watchlist?api_key=${API_KEY}&session_id=${this.session_id}`;
+    const ADD_TO_WATCH_LIST_URL = `https://api.themoviedb.org/3/account/${localStorage.getItem("user_account_id")}/watchlist?api_key=${API_KEY}&session_id=${localStorage.getItem(
+      "movie_tracker_session_id")}`;
     console.log(ADD_TO_WATCH_LIST_URL);
     const bodyData = {
       media_type,
@@ -153,23 +158,12 @@ class ApiCalls {
   }
 
   async getWatchList() {
-    const WATCH_LIST_URL = `https://api.themoviedb.org/3/account/${this.account_id}/watchlist/tv?api_key=${API_KEY}&language=en-US&sort_by=created_at.asc&page=1&session_id=${this.session_id}`;
+    const WATCH_LIST_URL = `https://api.themoviedb.org/3/account/${localStorage.getItem("user_account_id")}/watchlist/tv?api_key=${API_KEY}&language=en-US&sort_by=created_at.asc&page=1&session_id=${localStorage.getItem(
+      "movie_tracker_session_id")}`;
     const result = await (await fetch(WATCH_LIST_URL)).json();
     return result;
   }
 
-  async rateMovie(sessionId, movieId, value) {
-    const endpoint = `${API_URL}movie/${movieId}/rating?api_key=${API_KEY}&session_id=${sessionId}`;
-
-    const rating = await (
-      await fetch(endpoint, {
-        ...defaultConfig,
-        body: JSON.stringify({ value }),
-      })
-    ).json();
-
-    return rating;
-  }
 }
 
 const apipoints = new ApiCalls();

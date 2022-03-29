@@ -30,7 +30,7 @@ useEffect(()=>{
       
       {console.log(favoriteTvShows)}
 
-      {favoriteTvShows.length > 0 ? (
+      {favoriteTvShows && favoriteTvShows.length > 0 ? (
         <MovieList>
           {favoriteTvShows.map((item) => (
             <FavoritesCard
