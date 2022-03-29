@@ -15,12 +15,13 @@ import Nav from "../../components/navbar/Nav"
 import PorpularMovieCard from "../../components/card/PorpularMovieCard";
 import SearchedMovieCard from "../../components/card/SearchedMovieCard";
 import Navbar from "../../components/navbar/Navbar";
-import FeaturedMovie from "../../components/featuredMovie/FeaturedMovie";
+import HeaderPage from "../../components/featuredMovie/HeaderPage";
 
 const MainScreen = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
   const [porpularMovies, setPorpularMovies] = useState([]);
+  const [error, setError] = useState('');
   const movieURL = `https://api.themoviedb.org/3/tv/popular?api_key=20cd3dc0dd8dbf0f80e53b30fb48b367&language=en-US&page=1`;
   const myMovieURL = `https://api.themoviedb.org/3/search/movie?api_key=20cd3dc0dd8dbf0f80e53b30fb48b367&query`;
 
@@ -46,6 +47,7 @@ const MainScreen = () => {
       setPorpularMovies([]);
     } catch (e) {
       console.log(e);
+
     }
   };
 
@@ -56,10 +58,10 @@ const MainScreen = () => {
 
   return (
     <>
-      <FeaturedMovie/>
+      <HeaderPage/>
       <Container>
         {/* <Navbar /> */}
-        <Nav />
+        {/* <Nav /> */}
         <SearchInputWrapper>
           <SearchInput
             placeholder="Search Movies"
@@ -82,7 +84,7 @@ const MainScreen = () => {
           </MovieList>
         ) : (
           <div>
-            <h2>No movies found</h2>
+            <h2>{error}</h2>
           </div>
         )}
         <MovieList>
@@ -99,7 +101,6 @@ const MainScreen = () => {
         {/*
          */}
       </Container>
-      <h1>Hello</h1>
     </>
   );
 };

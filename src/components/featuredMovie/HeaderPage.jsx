@@ -19,7 +19,7 @@ const item = {
   first_air_date: Date.now(),
 };
 
-const FeaturedMovie = () => {
+const HeaderPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleModal() {
@@ -104,4 +104,4 @@ const FeaturedMovie = () => {
     </Featured>
   );
 };
-export default FeaturedMovie;
+export default HeaderPage;

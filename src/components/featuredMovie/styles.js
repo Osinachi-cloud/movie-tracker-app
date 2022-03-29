@@ -29,7 +29,7 @@ export const FeaturedHorizontal = styled.div`
     flex-direction: column;
     justify-content: center;
     padding-left: 30px;
-    padding-bottom: 190px;
+    padding-bottom: 100px;
     padding-top: 70px;
 
 

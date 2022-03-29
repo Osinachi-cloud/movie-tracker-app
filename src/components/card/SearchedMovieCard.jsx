@@ -6,6 +6,8 @@ import ReactTooltip from "react-tooltip";
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import Modal from "react-modal";
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
+import API from "../../utils/API";
+
   import {  
     MovieCard,
     MovieImage,
@@ -14,6 +16,7 @@ import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
     ActionWrapper,
     IconWrapButton,
     IconWrapper,
+    ImgLink
   
   } from "./styles";
 import { AddCommentButton, CloseModal, Form, CommentBox } from '../featuredMovie/styles';
@@ -22,9 +25,12 @@ import { useStateValue } from '../../stateContext/StateProvider';
 
 const SearchedMovieCard = ({id, original_title,backdrop_path }) => {
   const[{favorites}, dispatch]= useStateValue();
-
   const [isOpen, setIsOpen] = useState(false);
-
+  const [mediaId, setMediaId] = useState(null);
+  const [mediaType, setMediaType] = useState("");
+  const [addedToFavorite, setAddedToFavorite] = useState(false);
+  const [addedToWatchList, setAddedToWatchList] = useState(false);
+  const [error, setError] = useState("");
   function toggleModal() {
     console.log("opened")
     setIsOpen(!isOpen);
@@ -43,17 +49,74 @@ const SearchedMovieCard = ({id, original_title,backdrop_path }) => {
     });    
 };
 
+const handleAddFavorites = async () => {
+  console.log("added to favorite 1");
+  setError(false);
+  setMediaId(id);
+  console.log(id);
+  setMediaType("tv");
+  console.log(mediaType);
+  setAddedToFavorite(true);
+  console.log(addedToFavorite);
+  try {
+    const result = await API.markAsFavorites(
+      mediaType,
+      mediaId,
+      addedToFavorite
+    );
+    console.log(result);
+    console.log("submited");
+    // setUser({ sessionId: sessionId.session_id, username });
+    // navigate('/');
+  } catch (error) {
+    setError(true);
+  }
+  console.log("added to favorite 2");
+};
+
+const handleAddWatchList = async () => {
+  console.log("added to watchlist");
+  setError(false);
+  setMediaId(id);
+  console.log(id);
+  setMediaType("tv");
+  console.log(mediaType);
+  setAddedToWatchList(true);
+  console.log(addedToWatchList);
+  try {
+    const result = await API.addToWatchList(
+      mediaType,
+      mediaId,
+      addedToWatchList
+    );
+    console.log(result);
+    console.log("submited");
+    // setUser({ sessionId: sessionId.session_id, username });
+    // navigate('/');
+  } catch (error) {
+    setError(true);
+  }
+  console.log("added to watchlist");
+};
+
 
 
   return (
     <>
-         <MovieCard to="/" >
+         <MovieCard >
            
               <Figure>
-                <MovieImage
+        <ImgLink to = {`/favorites/${id}`}>
+
+
+        <MovieImage
                   src={`https://image.tmdb.org/t/p/w400/${backdrop_path}`}
                   alt={original_title}
                 />
+        
+        </ImgLink>
+
+            
               </Figure>
               <Title>{original_title}</Title>
 
@@ -76,7 +139,7 @@ const SearchedMovieCard = ({id, original_title,backdrop_path }) => {
                 </IconWrapButton>
 
                 <IconWrapButton>
-                  <IconWrapper>
+                  <IconWrapper onClick={handleAddWatchList}>
                     <CheckCircleIcon
                       data-tip
                       data-for="favorites"

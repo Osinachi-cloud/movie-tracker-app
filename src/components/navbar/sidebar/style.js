@@ -1,22 +1,23 @@
 import styled from 'styled-components/macro';
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link as LinkR } from 'react-router-dom'
-import { Link as LinkS } from 'react-scroll'
+import { Link as LinkR } from 'react-scroll'
+import { Link as LinkS } from 'react-router-dom'
 
 export const SidebarContainer = styled.aside`
 position : fixed;
 z-index :999;
 width:100%;
-// height:50%;
+height:fit-content;
+padding-bottom:30px;
 background: #0d0d0d;
 display:grid;
 align-items : center;
-top:0;
+top:8vh;
 left:0;
 transition: 0.3s ease-in-out;
 opacity: ${({isOpen}) => (isOpen ? '100%': '0')};
-top: ${({isOpen})=> (isOpen ? '0': '-100%')}
+top: ${({isOpen})=> (isOpen ? '8vh': '-100%')}
 // top:0;
 `
 
@@ -89,9 +90,9 @@ export const SidebarRoute = styled(LinkR)`
     cursor:pointer;
     transition: all 0.2s ease-in-out;
     text-decoration:none;
-    margin-top:30px;
+    margin-top:10px;
     background: #fff;
-    margin-bottom:30px;
+    margin-bottom:10px;
 
 &:hover {
     transition: all 0.2s ease-in-out;
@@ -99,3 +100,11 @@ export const SidebarRoute = styled(LinkR)`
 
 }
 `
+export const BtnWrap = styled.div`
+    display:flex;
+    flex-direction: column;
+    height:200px;
+    justify-content:center;
+
+`;
+

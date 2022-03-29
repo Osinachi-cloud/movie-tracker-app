@@ -9,7 +9,7 @@ const Nav = () => {
     }
   return (
     <>
-        <SideBar isOpen={isOpen} toggle ={toggle}/>
+        <SideBar isOpen={isOpen} toggle ={toggle} setIsOpen={setIsOpen}/>
 
         <Navbar setIsOpen={setIsOpen} isOpen={isOpen} toggle={toggle}/>
 

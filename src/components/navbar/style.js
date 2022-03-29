@@ -1,6 +1,7 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink as Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
+import CloseIcon from '@mui/icons-material/Close';
 
 export const Nav = styled.nav`
   background: #1B1A1E;
@@ -44,6 +45,27 @@ export const Logo = styled.h2`
   color: #397D32;
 `
 export const Bars = styled(MenuIcon)`
+  display: none;
+  color: #fff;
+  position:absolute;
+  right:-100px;
+  @media screen and (max-width: 768px) {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 75%);
+    font-size: 1.8rem;
+    cursor: pointer;
+
+  }
+  @media screen and (min-width: 508px) {
+
+  }
+`;
+
+
+export const CloseIconBurger = styled(CloseIcon)`
   display: none;
   color: #fff;
   position:absolute;

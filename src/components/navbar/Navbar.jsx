@@ -9,8 +9,10 @@ import {
   NavBtnLink,
   Logo,
   SignUpBtnLink,
+  CloseIconBurger,
 } from "./style";
 import { useNavigate } from "react-router-dom";
+
 
 const Navbar = ({ toggle, setIsOpen, isOpen }) => {
   const [userDetails, setUserDetails] = useState("");
@@ -74,7 +76,7 @@ const Navbar = ({ toggle, setIsOpen, isOpen }) => {
             toggle();
           }}
         >
-          <Bars />
+          {isOpen ? <CloseIconBurger /> : <Bars />}
         </div>
         <NavMenu>
           <NavLink to="/favorites" activestyle="true">
@@ -83,12 +85,6 @@ const Navbar = ({ toggle, setIsOpen, isOpen }) => {
           <NavLink to="/watchlist" activestyle="true">
             My WatchList
           </NavLink>
-          <NavLink to="/featured" activestyle="true">
-            FeaturedMovie
-          </NavLink>
-
-          {/* Second Nav */}
-          {/* <NavBtnLink to='/sign-in'>Sign In</NavBtnLink> */}
         </NavMenu>
         <div style={{ display: "flex", justifyContent: "right" }}>
           {localStorage.getItem("userLoggedIn") ? (
@@ -102,7 +98,6 @@ const Navbar = ({ toggle, setIsOpen, isOpen }) => {
             </NavBtn>
           ) : (
             <NavBtn>
-              {/* <NavBtnLink to="/login" >log in</NavBtnLink> */}
               <SignUpBtnLink onClick={signup}>Sign up</SignUpBtnLink>
             </NavBtn>
           )}
