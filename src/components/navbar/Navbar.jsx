@@ -57,7 +57,8 @@ const Navbar = ({ toggle, setIsOpen, isOpen }) => {
     } else {
       navigate("/login");
     }
-  }, []);
+
+  });
 
   return (
     <>
