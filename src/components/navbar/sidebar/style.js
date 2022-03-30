@@ -82,7 +82,7 @@ export const SidebarRoute = styled(LinkR)`
     padding: 16px 64px;
     color:green;
     font-size:22px;
-    width:80%;
+    width:100%;
     text-align: center;
     font-weight:900;
     outline:none;
