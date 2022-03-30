@@ -17,7 +17,7 @@ left:0;
 transition: 0.5s ease-in-out;
 opacity: ${({isOpen}) => (isOpen ? '100%': '0')};
 left: ${({isOpen})=> (isOpen ? '0vh': '-100%')}
-// top:0;
+top:10vh;
 
 `
 
