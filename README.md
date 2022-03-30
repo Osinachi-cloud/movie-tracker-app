@@ -1,0 +1,3 @@
+# movie-tracker-app
+A react based authenticated web application that helps a user track his favorite movies, watched movies.....
+https://tv-tracker-app.netlify.app/
