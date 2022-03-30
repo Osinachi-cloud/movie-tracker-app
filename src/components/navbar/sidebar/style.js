@@ -12,13 +12,11 @@ padding-bottom:30px;
 background: #0d0d0d;
 display:grid;
 align-items : center;
-// top:8vh;
+top:10vh;
 left:0;
 transition: 0.5s ease-in-out;
 opacity: ${({isOpen}) => (isOpen ? '100%': '0')};
 left: ${({isOpen})=> (isOpen ? '0vh': '-100%')}
-top:10vh;
-
 `
 
 export const CloseIconBar = styled(CloseIcon)`
