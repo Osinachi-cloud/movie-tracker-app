@@ -172,7 +172,7 @@ const ViewSingleMovieDetails = () => {
             </FeaturedMyListButton>
           </FeaturedButtons>
           <FeaturedGenres>
-            <strong>Gêneros:</strong> {"hello boy my man"}
+          I am a React Developer
           </FeaturedGenres>
         </FeaturedHorizontal>
       </FeaturedVertical>
