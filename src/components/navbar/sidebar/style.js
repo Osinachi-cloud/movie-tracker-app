@@ -12,11 +12,11 @@ padding-bottom:30px;
 background: #0d0d0d;
 display:grid;
 align-items : center;
-top:8vh;
+// top:8vh;
 left:0;
-transition: 0.3s ease-in-out;
+transition: 0.5s ease-in-out;
 opacity: ${({isOpen}) => (isOpen ? '100%': '0')};
-top: ${({isOpen})=> (isOpen ? '8vh': '-100%')}
+left: ${({isOpen})=> (isOpen ? '0vh': '-100%')}
 // top:0;
 `
 
@@ -78,11 +78,13 @@ export const SideBtnWrap = styled.div`
     justify-content:center;
 `
 export const SidebarRoute = styled(LinkR)`
-    border-radius:50px;
+    border-radius:4px;
     white-space:nowrap;
     padding: 16px 64px;
     color:green;
     font-size:22px;
+    width:80%;
+    text-align: center;
     font-weight:900;
     outline:none;
     border:3px solid white;
