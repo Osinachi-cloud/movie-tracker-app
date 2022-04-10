@@ -25,11 +25,9 @@ const MainScreen = () => {
   const FetchDataFromApi = async () => {
     try {
       let response = await axios.get(movieURL);
-      console.log(response.data.results);
       setPorpularMovies(response.data.results);
       setError(null)
     } catch (error) {
-      console.log(error);
       setError("error in the connection")
     }
   };
@@ -37,8 +35,6 @@ const MainScreen = () => {
   const searchMovies = async (title) => {
     try {
       const response = await axios.get(`${myMovieURL}=${title}`);
-      console.log(response.data.results);
-      console.table(response);
       setMovies(response.data.results);
       setPorpularMovies([]);
     } catch (e) {

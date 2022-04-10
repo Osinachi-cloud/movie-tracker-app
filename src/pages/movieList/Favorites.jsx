@@ -11,10 +11,6 @@ const Favorites = () => {
 
   const fetchFavoritesTvShows = async ()=>{
     const response = await  API.getFavoriteTvShows();
-    console.log(await response.results)
-    console.log(typeof(response.results))
-    console.log(typeof( response))
-    console.log(response)
     setFavoriteTvShows(response.results)
   }
 
@@ -28,7 +24,6 @@ useEffect(()=>{
 
     <Container>
       
-      {console.log(favoriteTvShows)}
 
       {favoriteTvShows && favoriteTvShows.length > 0 ? (
         <MovieList>

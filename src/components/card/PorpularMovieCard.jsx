@@ -35,55 +35,41 @@ const PorpularMovieCard = ({ id, name, backdrop_path }) => {
   const [error, setError] = useState("");
 
   function toggleModal() {
-    console.log("opened");
     setIsOpen(!isOpen);
   }
 
   const handleAddFavorites = async () => {
-    console.log("added to favorite 1");
     setError(false);
     setMediaId(id);
-    console.log(id);
     setMediaType("tv");
-    console.log(mediaType);
     setAddedToFavorite(true);
-    console.log(addedToFavorite);
     try {
       const result = await API.markAsFavorites(
         "tv",
         id,
         true
       );
-      console.log(result);
-      console.log("submited");
+ 
     } catch (e) {
       setError(true);
-      console.log(e, error);
     }
-    console.log("added to favorite 2");
   };
 
   const handleAddWatchList = async () => {
-    console.log("added to watchlist");
     setError(false);
     setMediaId(id);
-    console.log(id);
     setMediaType("tv");
-    console.log(mediaType);
     setAddedToWatchList(true);
-    console.log(addedToWatchList);
     try {
       const result = await API.addToWatchList(
         "tv",
         id,
         true
       );
-      console.log(result);
-      console.log("submited");
+ 
     } catch (error) {
       setError(true);
     }
-    console.log("added to watchlist");
   };
 
   return (

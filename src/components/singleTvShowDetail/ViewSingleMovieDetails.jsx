@@ -59,68 +59,49 @@ const ViewSingleMovieDetails = () => {
   const getSingleTvDetails = async () => {
     try {
       const GET_SINGLE_TV_URL = `https://api.themoviedb.org/3/movie/${id}?api_key=20cd3dc0dd8dbf0f80e53b30fb48b367&append_to_response=videos`;
-      console.log(GET_SINGLE_TV_URL);
       const data = await fetch(GET_SINGLE_TV_URL);
-      console.table(data);
       const response = await data.json();
-      console.log(typeof response);
-      console.table(response);
+
       setMovieDetails(response);
-      console.log(response);
-      console.log(id);
+
     } catch (e) {
       console.log(e, error);
     }
   };
 
   const handleAddFavorites = async () => {
-    console.log("added to favorite 1");
     setError(false);
     setMediaId(id);
-    console.log(id);
     setMediaType("tv");
-    console.log(mediaType);
     setAddedToFavorite(true);
-    console.log(addedToFavorite);
     try {
       const result = await API.markAsFavorites(
         "tv",
         id,
         true
       );
-      console.log(result);
-      console.log("submited");
-      // setUser({ sessionId: sessionId.session_id, username });
-      // navigate('/');
+
     } catch (error) {
       setError(true);
     }
-    console.log("added to favorite 2");
   };
 
   const handleAddWatchList = async () => {
-    console.log("added to watchlist");
     setError(false);
     setMediaId(id);
-    console.log(id);
     setMediaType("tv");
-    console.log(mediaType);
     setAddedToWatchList(true);
-    console.log(addedToWatchList);
     try {
       const result = await API.addToWatchList(
         "tv",
         id,
         true
       );
-      console.log(result);
-      console.log("submited");
-      // setUser({ sessionId: sessionId.session_id, username });
-      // navigate('/');
+  
+
     } catch (error) {
       setError(true);
     }
-    console.log("added to watchlist");
   };
 
   useEffect(() => {

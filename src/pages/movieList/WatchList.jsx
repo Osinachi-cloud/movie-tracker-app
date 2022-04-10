@@ -12,10 +12,6 @@ const WatchList = () => {
 
   const watchListTvShows = async ()=>{
     const response = await  API.getWatchList();
-    console.log(response.results)
-    console.log(typeof(response.results))
-    console.log(typeof(response))
-    console.log(response)
     setWatchList(response.results)
   }
 

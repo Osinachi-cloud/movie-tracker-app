@@ -31,16 +31,13 @@ const FavoritesCard = ({ id, name, backdrop_path }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleModal() {
-    console.log("opened");
     setIsOpen(!isOpen);
   }
 
   const handleAddWatchList = async () => {
     setError(false);
     setMediaId(id);
-    console.log(id);
     setMediaType("tv");
-    console.log(mediaType);
     setAddedToWatchList(true);
     try {
       const result = await API.addToWatchList(
@@ -48,13 +45,11 @@ const FavoritesCard = ({ id, name, backdrop_path }) => {
         id,
         true
       );
-      console.log(result);
-      console.log("submited");
+  
     } catch (e) {
       console.log(error, e);
       setError(true);
     }
-    console.log("added to watchlist");
   };
 
   return (

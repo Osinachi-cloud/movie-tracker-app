@@ -42,7 +42,6 @@ const HeaderPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleModal() {
-    console.log("opened");
     setIsOpen(!isOpen);
   }
 
