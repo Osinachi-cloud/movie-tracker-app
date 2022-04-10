@@ -90,7 +90,6 @@ const HeaderPage = () => {
               <FeaturedAddNote>add to watch list</FeaturedAddNote>
             </FeaturedMyListButton>
           </FeaturedButtons>
-          {/* <div className="featured--genres"><strong>Gêneros:</strong> {genres.join(', ')}</div> */}
           <FeaturedGenres>
             I am a React Developer
           </FeaturedGenres>

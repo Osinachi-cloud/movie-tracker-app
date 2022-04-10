@@ -48,16 +48,12 @@ export const MovieCard = styled.div`
 
 export const MovieImage = styled.img`
 display: block;
-width: 100%;
-height:202px;
 cursor: pointer;
-  transform:scale(1);
-  overflow: hidden;
-//   -webkit-filter: hue-rotate(180deg); 
-// -moz-filter:  hue-rotate(180deg); 
-// -ms-filter:  hue-rotate(180deg);  
-// -o-filter:  hue-rotate(180deg);  
-// filter: hue-rotate(180deg); 
+transform:scale(1);
+overflow: hidden;
+width: 100%;
+height: auto;
+object-fit: cover;
 
 
   &:hover {

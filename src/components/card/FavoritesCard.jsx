@@ -36,14 +36,12 @@ const FavoritesCard = ({ id, name, backdrop_path }) => {
   }
 
   const handleAddWatchList = async () => {
-    console.log("added to watchlist");
     setError(false);
     setMediaId(id);
     console.log(id);
     setMediaType("tv");
     console.log(mediaType);
     setAddedToWatchList(true);
-    console.log(addedToWatchList);
     try {
       const result = await API.addToWatchList(
         "tv",
